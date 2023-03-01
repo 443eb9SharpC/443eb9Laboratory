@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>_443eb9Laboratory</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\js\common.ts" />
+    <Content Remove="wwwroot\js\login.ts" />
+    <Content Remove="wwwroot\js\package-lock.json" />
+    <Content Remove="wwwroot\js\package.json" />
+    <Content Remove="wwwroot\js\signalr.ts" />
+    <Content Remove="wwwroot\js\tsconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+  </ItemGroup>
+
+</Project>

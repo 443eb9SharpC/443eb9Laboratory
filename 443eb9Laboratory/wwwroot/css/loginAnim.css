@@ -1,0 +1,26 @@
+.form .mask-enter {
+    left: 200%;
+}
+
+.login-anim-enter {
+    left: 0;
+}
+
+.login-anim-enlarge {
+    top: 0;
+    height: 100%;
+    color: #fff;
+    background-color: #191919;
+}
+
+.login-anim .title-enter {
+    right: 10%;
+}
+
+.login-anim .title-exit {
+    right: -100%;
+}
+
+.message-boxes .message-enter {
+    left: 0;
+}
