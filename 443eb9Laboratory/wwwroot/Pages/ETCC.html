@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>443eb9 - Laboratory - ETCC</title>
+
+    <link rel="stylesheet" href="../CSS/common.css">
+    <link rel="stylesheet" href="../CSS/fonts.css">
+    <link rel="stylesheet" href="../CSS/ETCC/etcc-common.css">
+    <link rel="stylesheet" href="../CSS/ETCC/etcc-dashboard.css">
+    <link rel="stylesheet" href="../CSS/ETCC/etcc-chunks.css">
+    <link rel="stylesheet" href="../CSS/ETCC/etcc-store.css">
+    <link rel="stylesheet" href="../CSS/ETCC/etcc-market.css">
+</head>
+
+<body>
+    <div class="tabs-box">
+        <div class="tabs">
+            <div class="top-bar">Tabs</div>
+            <ul>
+                <li class="dashboard">
+                    <button class="tab">仪表盘</button>
+                </li>
+                <li class="chunks">
+                    <button class="tab">区块</button>
+                </li>
+                <li class="store">
+                    <button class="tab">商店</button>
+                </li>
+                <li class="market">
+                    <button class="tab">市场</button>
+                </li>
+                <li class="version">
+                    <button class="tab">Alpha 0.0.1</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="box-container dashboard" style="display: block;">
+        <div class="row clearfix">
+            <div class="title-box box">
+                <div class="top-bar">// welcome to</div>
+                <i class="icon">&#xe87c;</i>
+                <h1 class="title">实验性<br>恒温培养仓</h1>
+                <h1 class="title-eng">Experimental Thermostatic Culture Chamber</h1>
+            </div>
+
+            <div class="module-container box">
+                <div class="top-bar">Modules</div>
+                <h1 class="title">模块</h1>
+                <div class="column-left">
+                    <div class="module-box">
+                        <div class="temp-module">
+                            <i class="module-icon icon">&#xe89e;</i>
+                            <div class="module-name">温度</div>
+                            <div class="module-unit">
+                                <div class="centigrade">C</div>
+                                <div class="degree">。</div>
+                            </div>
+                            <div class="module-data">25.0</div>
+                        </div>
+                    </div>
+                    <div class="module-box">
+                        <div class="hudimity-module">
+                            <i class="module-icon icon">&#xe60f;</i>
+                            <div class="module-name">湿度</div>
+                            <div class="module-unit">%</div>
+                            <div class="module-data">50</div>
+                        </div>
+                    </div>
+                    <div class="module-box">
+                        <div class="illumination-module">
+                            <i class="module-icon icon">&#xe66d;</i>
+                            <div class="module-name">光照</div>
+                            <div class="module-unit">Lux</div>
+                            <div class="module-data">7000</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column-right">
+                    <div class="module-box">
+                        <div class="carbonDioxide-module">
+                            <i class="module-icon icon">&#xe6bd;</i>
+                            <div class="module-name">
+                                <div class="CO2-CO">CO</div>
+                                <div class="CO2-2">2</div>
+                            </div>
+                            <div class="module-unit">ppm</div>
+                            <div class="module-data">1000</div>
+                        </div>
+                    </div>
+                    <div class="module-box">
+                        <div class="pH-module">
+                            <i class="module-icon icon">&#xe607;</i>
+                            <div class="module-name ph">pH</div>
+                            <div class="module-data">7.0</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row clearfix">
+            <div class="status-box box">
+                <div class="top-bar">Status</div>
+                <h1 class="title">状态</h1>
+                <h1 class="name">培养仓名字</h1>
+                <h2 class="id">#1</h2>
+                <h2 class="owner">443eb9#C</h2>
+                <h2 class="description">培养仓描述</h2>
+                <i class="icon">&#xec47;</i>
+                <h2 class="level">Lv. 1</h2>
+            </div>
+
+            <div class="statstics-box box">
+                <div class="top-bar">Statstics</div>
+                <h1 class="title">统计信息</h1>
+                <ul>Work In Progress W.I.P.</ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="box-container chunks" style="display: none;">
+        <div class="crop-chunks">
+            <div class="alpha chunk">
+                <div class="top-bar">Chunk Alpha</div>
+                <i class="crop-on-chunk icon">&#xe602;</i>
+                <h3 class="id">#1</h3>
+                <h3 class="name">防风草</h3>
+                <h3 class="title">剩余成熟时间</h3>
+                <h3 class="time-remain">1D 10:05:34</h3>
+            </div>
+            <div class="beta chunk">
+                <div class="top-bar">Chunk Beta</div>
+                <i class="crop-on-chunk icon">&#xe602;</i>
+                <h3 class="id">#1</h3>
+                <h3 class="name">防风草</h3>
+                <h3 class="title">剩余成熟时间</h3>
+                <h3 class="time-remain">1D 10:05:34</h3>
+            </div>
+            <div class="gamma chunk">
+                <div class="top-bar">Chunk Gamma</div>
+                <i class="crop-on-chunk icon">&#xe602;</i>
+                <h3 class="id">#1</h3>
+                <h3 class="name">防风草</h3>
+                <h3 class="title">剩余成熟时间</h3>
+                <h3 class="time-remain">1D 10:05:34</h3>
+            </div>
+            <div class="delta chunk">
+                <div class="top-bar">Chunk Delta</div>
+                <i class="crop-on-chunk icon">&#xe602;</i>
+                <h3 class="id">#1</h3>
+                <h3 class="name">防风草</h3>
+                <h3 class="title">剩余成熟时间</h3>
+                <h3 class="time-remain">1D 10:05:34</h3>
+            </div>
+            <div class="epsilon chunk">
+                <div class="top-bar">Chunk Epsilon</div>
+                <i class="crop-on-chunk icon">&#xe602;</i>
+                <h3 class="id">#1</h3>
+                <h3 class="name">防风草</h3>
+                <h3 class="title">剩余成熟时间</h3>
+                <h3 class="time-remain">1D 10:05:34</h3>
+            </div>
+            <div class="zeta chunk">
+                <div class="top-bar">Chunk Zeta</div>
+                <i class="crop-on-chunk icon">&#xe602;</i>
+                <h3 class="id">#1</h3>
+                <h3 class="name">防风草</h3>
+                <h3 class="title">剩余成熟时间</h3>
+                <h3 class="time-remain">1D 10:05:34</h3>
+            </div>
+            <div class="eta chunk">
+                <div class="top-bar">Chunk Eta</div>
+                <i class="crop-on-chunk icon">&#xe602;</i>
+                <h3 class="id">#1</h3>
+                <h3 class="name">防风草</h3>
+                <h3 class="title">剩余成熟时间</h3>
+                <h3 class="time-remain">1D 10:05:34</h3>
+            </div>
+            <div class="theta chunk">
+                <div class="top-bar">Chunk Theta</div>
+                <i class="crop-on-chunk icon">&#xe602;</i>
+                <h3 class="id">#1</h3>
+                <h3 class="name">防风草</h3>
+                <h3 class="title">剩余成熟时间</h3>
+                <h3 class="time-remain">1D 10:05:34</h3>
+            </div>
+            <div class="iota chunk">
+                <div class="top-bar">Chunk Iota</div>
+                <i class="crop-on-chunk icon">&#xe7c9;</i>
+                <h3 class="id">#1</h3>
+                <h3 class="name">防风草</h3>
+                <h3 class="title">剩余成熟时间</h3>
+                <h3 class="time-remain">1D 10:05:34</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="box-container shop" style="display: none;">
+        <div class="left-box clearfix">
+            <div class="side-box box">
+                <div class="top-bar">Selection</div>
+                <ul>
+                    <li>
+                        <button class="selection">种子</button>
+                    </li>
+                </ul>
+            </div>
+            <div class="asset-box box">
+                <div class="top-bar">Total Asset</div>
+                <h1 class="asset">1000μ</h1>
+            </div>
+        </div>
+        <div class="main-box box clearfix">
+            <div class="top-bar">Shop</div>
+            <div class="products-container">
+                <ul>
+                    <li class="seed-product clearfix">
+                        <i class="seed-icon icon">&#xe602;</i>
+                        <div class="description">
+                            <h4 class="latin">Pastinaca sativa</h4>
+                            <h3 class="name">防风草</h3>
+                            <h3 class="price">200μ</h3>
+                        </div>
+                    </li>
+                    <li class="seed-product clearfix">
+                        <i class="seed-icon icon">&#xe602;</i>
+                        <div class="description">
+                            <h4 class="latin">Pastinaca sativa</h4>
+                            <h3 class="name">防风草</h3>
+                            <h3 class="price">200μ</h3>
+                        </div>
+                    </li>
+                    <li class="seed-product clearfix">
+                        <i class="seed-icon icon">&#xe602;</i>
+                        <div class="description">
+                            <h4 class="latin">Pastinaca sativa</h4>
+                            <h3 class="name">防风草</h3>
+                            <h3 class="price">200μ</h3>
+                        </div>
+                    </li>
+                    <li class="seed-product clearfix">
+                        <i class="seed-icon icon">&#xe602;</i>
+                        <div class="description">
+                            <h4 class="latin">Pastinaca sativa</h4>
+                            <h3 class="name">防风草</h3>
+                            <h3 class="price">200μ</h3>
+                        </div>
+                    </li>
+                    <li class="seed-product clearfix">
+                        <i class="seed-icon icon">&#xe602;</i>
+                        <div class="description">
+                            <h4 class="latin">Pastinaca sativa</h4>
+                            <h3 class="name">防风草</h3>
+                            <h3 class="price">200μ</h3>
+                        </div>
+                    </li>
+                    <li class="seed-product clearfix">
+                        <i class="seed-icon icon">&#xe602;</i>
+                        <div class="description">
+                            <h4 class="latin">Pastinaca sativa</h4>
+                            <h3 class="name">防风草</h3>
+                            <h3 class="price">200μ</h3>
+                        </div>
+                    </li>
+                    <li class="seed-product clearfix">
+                        <i class="seed-icon icon">&#xe602;</i>
+                        <div class="description">
+                            <h4 class="latin">Pastinaca sativa</h4>
+                            <h3 class="name">防风草</h3>
+                            <h3 class="price">200μ</h3>
+                        </div>
+                    </li>
+                    <li class="seed-product clearfix">
+                        <i class="seed-icon icon">&#xe602;</i>
+                        <div class="description">
+                            <h4 class="latin">Pastinaca sativa</h4>
+                            <h3 class="name">防风草</h3>
+                            <h3 class="price">200μ</h3>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="decoration-bar">There's no ADs... so far</div>
+        </div>
+    </div>
+
+    <div class="box-container market" style="display: none;">
+        <div class="left-box clearfix">
+            <div class="side-box box">
+                <div class="top-bar">Selection</div>
+                <ul>
+                    <li>
+                        <button class="selection">作物</button>
+                    </li>
+                </ul>
+            </div>
+            <div class="asset-box box">
+                <div class="top-bar">Total Asset</div>
+                <h1 class="asset">1000μ</h1>
+            </div>
+        </div>
+        <div class="main-box box clearfix">
+            <div class="top-bar">Market</div>
+            <div class="products-container clearfix">
+                <ul>
+                    <li>
+                        <div class="crop-product clearfix">
+                            <i class="crop-icon icon">&#xe602;</i>
+                            <h3 class="name">防风草</h3>
+                            <i class="highs-and-lows icon">&#xe7ee;</i>
+                            <h3 class="price">300μ</h3>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="crop-product clearfix">
+                            <i class="crop-icon icon">&#xe602;</i>
+                            <h3 class="name">防风草</h3>
+                            <i class="highs-and-lows icon">&#xe7ee;</i>
+                            <h3 class="price">300μ</h3>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="crop-product clearfix">
+                            <i class="crop-icon icon">&#xe602;</i>
+                            <h3 class="name">防风草</h3>
+                            <i class="highs-and-lows icon">&#xe7ee;</i>
+                            <h3 class="price">300μ</h3>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="crop-product clearfix">
+                            <i class="crop-icon icon">&#xe602;</i>
+                            <h3 class="name">防风草</h3>
+                            <i class="highs-and-lows icon">&#xe7ee;</i>
+                            <h3 class="price">300μ</h3>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="crop-product clearfix">
+                            <i class="crop-icon icon">&#xe602;</i>
+                            <h3 class="name">防风草</h3>
+                            <i class="highs-and-lows icon">&#xe7ee;</i>
+                            <h3 class="price">300μ</h3>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="decoration-bar">There's no ADs... so far</div>
+        </div>
+    </div>
+    
+    <div class="message-boxes"></div>
+
+    <script type="module" src="../JS/ETCC/etcc-common.js"></script>
+    <script type="module" src="../JS/ETCC/etcc-dashboard.js"></script>
+    <script type="module" src="../JS/ETCC/etcc-chunks.js"></script>
+    <script type="module" src="../JS/ETCC/etcc-store.js"></script>
+    <script src="../lib/microsoft/signalr/dist/browser/signalr.js"></script>
+    <script src="../lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
+</body>
+
+</html>

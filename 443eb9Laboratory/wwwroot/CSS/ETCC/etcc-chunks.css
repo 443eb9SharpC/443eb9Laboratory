@@ -1,0 +1,56 @@
+.chunk {
+    position: relative;
+    float: left;
+    width: 250px;
+    height: 250px;
+    margin: 10px;
+    background-color: #fff;
+}
+
+.chunk:nth-child(3n-2) {
+    margin-left: 10px;
+}
+
+.chunk:nth-child(3n+3) {
+    margin-right: 0;
+}
+
+.crop-chunks {
+    width: 800px;
+}
+
+.chunk .crop-on-chunk {
+    position: absolute;
+    top: 40px;
+    left: 15px;
+    padding: 5px;
+    font-size: 70px;
+    background-color: rgba(0, 0, 0, 0.07);
+}
+
+.chunk .id {
+    position: absolute;
+    left: 60px;
+    margin: 20px 50px;
+    font: 400 35px 'Bender';
+}
+
+.chunk .name {
+    position: absolute;
+    left: 60px;
+    margin: 50px 50px;
+    font: 400 25px 'STZhongSong';
+}
+
+.chunk .title {
+    position: absolute;
+    bottom: 40px;
+    font: 400 25px 'STZhongSong';
+}
+
+.chunk .time-remain {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    font: 400 20px 'Bender';
+}

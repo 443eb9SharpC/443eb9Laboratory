@@ -1,0 +1,142 @@
+.tabs-box,
+.title-box,
+.module-container,
+.status-box {
+    opacity: 0;
+}
+
+.title-box {
+    overflow: hidden;
+    width: 300px;
+}
+
+.title-box .title-eng {
+    margin: 15px;
+    color: #999;
+    font: 400 20px 'Bender';
+}
+
+.title-box .icon {
+    margin: 10px 0 0 10px;
+    font-size: 100px;
+}
+
+.module-container .title {
+    margin: 15px 30px;
+    font: 800 40px 'STZhongSong';
+}
+
+.module-container .column-left {
+    float: left;
+    margin: 2.1px;
+}
+
+.module-container .column-right {
+    float: right;
+    margin: 2.1px;
+}
+
+.module-container .module-box {
+    overflow: hidden;
+    position: relative;
+    margin: 10px;
+    width: 400px;
+    height: 60px;
+    background-color: rgba(0, 0, 0, 0.07);
+    box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.04);
+}
+
+.module-box .module-icon {
+    position: absolute;
+    top: -40px;
+    left: 80px;
+    color: rgba(0, 0, 0, 0.05);
+    font-size: 120px;
+}
+
+.module-box .module-name {
+    float: left;
+    margin-left: 20px;
+    font: 400 35px/60px 'STZhongSong';
+}
+
+.module-box .module-data {
+    float: right;
+    margin-right: 10px;
+    font: 400 35px/60px 'Bender';
+}
+
+.module-box .module-unit {
+    float: right;
+    margin-right: 20px;
+    font: 400 35px/60px 'Bender';
+}
+
+.module-box .degree {
+    float: right;
+    margin-top: -8px;
+    margin-right: -15px;
+    font: 400 30px 'Source Han Sans CN';
+}
+
+.module-box .centigrade {
+    float: right;
+    font: 400 35px/60px 'Bender';
+}
+
+.module-box .CO2-CO {
+    float: left;
+    font-family: 'Bender';
+}
+
+.module-box .CO2-2 {
+    float: left;
+    margin-top: 30px;
+    margin-left: 2px;
+    font: 400 20px 'Bender';
+}
+
+.module-box .ph {
+    font-family: 'Bender';
+}
+
+.status-box {
+    width: 250px;
+}
+
+.status-box .name {
+    margin: 0 25px;
+    font: 400 30px 'STZhongSong';
+}
+
+.status-box .id {
+    margin: 5px 25px -12px;
+    font: 400 20px 'Bender';
+}
+
+.status-box .owner {
+    margin: 0 25px;
+    font: 800 30px 'Source Han Sans CN';
+}
+
+.status-box .description {
+    margin: 0 25px;
+    color: #999;
+    font: 400 18px 'Source Han Sans CN';
+}
+
+.status-box i {
+    float: left;
+    margin: 10px 25px 20px;
+    font-size: 40px;
+}
+
+.status-box .level {
+    margin: 15px 25px;
+    font: 800;
+    font-family: 'Bender';
+}
+
+.statstics-box {
+    display: none;
+}

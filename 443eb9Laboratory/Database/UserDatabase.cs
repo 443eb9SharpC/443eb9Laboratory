@@ -1,5 +1,6 @@
 ﻿using _443eb9Laboratory.DataModels;
 using _443eb9Laboratory.Utils;
+using System.Collections;
 
 namespace _443eb9Laboratory.Database;
 
@@ -7,17 +8,20 @@ public class UserDatabase
 {
     private static List<User> database;
 
-    public static void Init() =>
+    public static void Init()
+    {
+        Console.WriteLine($"[{DateTime.Now}] UserDatabase Init");
         database = IOOperator.ReadJson<List<User>>("Data/UserDatabase.json");
+    }
 
     public static void SaveDatabase() =>
         IOOperator.ToJson("Data/UserDatabase.json", database);
 
-    public static void AddUser(User user) =>
-        database.Add(user);
-
-    public static void AddUser(string username, string password, string email) =>
+    public static void AddUser(string username, string password, string email)
+    {
         database.Add(new User(username, password, email));
+        SaveDatabase();
+    }
 
     public static bool HasUser(string username)
     {

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>443eb9 - Laboratory - NewETCC</title>
+    <link rel="stylesheet" href="../CSS/common.css">
+    <link rel="stylesheet" href="../CSS/fonts.css">
+    <link rel="stylesheet" href="../CSS/login.css">
+    <link rel="stylesheet" href="../CSS/loginAnim.css">
+    <link rel="stylesheet" href="../CSS/ETCC/etcc-common.css">
+    <link rel="stylesheet" href="../CSS/ETCC/etcc-new.css">
+</head>
+
+<body>
+    <div class="panel-left">
+        <div class="form">
+            <div class="login-form form">
+                <h1 class="title">新建培养仓</h1>
+                <div class="input-area">
+                    <div class="username">
+                        <h4>培养仓名</h4>
+                        <input type="text" class="chamber-name" placeholder="Chamber Name">
+                    </div>
+                    <div class="password">
+                        <h4>培养仓描述</h4>
+                        <textarea class="description" placeholder="Chamber Description"></textarea>
+                    </div>
+                    <button class="register button">
+                        <div class="mask"></div>
+                        <h3 class="submit">提交信息</h3>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="message-boxes"></div>
+
+    <script type="module" src="../JS/ETCC/etcc-new.js"></script>
+    <script type="module" src="../JS/common.js"></script>
+    <script src="../lib/microsoft/signalr/dist/browser/signalr.js"></script>
+    <script src="../lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
+</body>
+
+</html>

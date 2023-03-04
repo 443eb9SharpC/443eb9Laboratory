@@ -12,3 +12,10 @@
     font-family: 'Bender';
     src: url('fonts/Bender/Jovanny\ Lemonad\ -\ Bender.otf') format('opentype');
 }
+
+@font-face {
+    font-family: 'etcc-iconfont';  /* Project id 3930595 */
+    src: url('//at.alicdn.com/t/c/font_3930595_2n8zoe6msdt.woff2?t=1677941826568') format('woff2'),
+         url('//at.alicdn.com/t/c/font_3930595_2n8zoe6msdt.woff?t=1677941826568') format('woff'),
+         url('//at.alicdn.com/t/c/font_3930595_2n8zoe6msdt.ttf?t=1677941826568') format('truetype');
+  }

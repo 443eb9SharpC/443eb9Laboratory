@@ -1,0 +1,116 @@
+body {
+    overflow-x: hidden;
+    color: #191919;
+    background-color: #191919;
+}
+
+.icon {
+    font-family: 'etcc-iconfont';
+}
+
+.box-container {
+    width: 70%;
+    height: 100%;
+    margin: 0 auto;
+    padding: 5% 0;
+}
+
+.box {
+    position: relative;
+    float: left;
+    margin: 10px;
+    background-color: #eee;
+    box-shadow: 10px 10px 10px 5px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+    margin: 15px;
+    font: 800 40px 'STZhongSong';
+}
+
+.top-bar {
+    height: 25px;
+    padding-left: 15px;
+    color: #443eb9;
+    background-color: #fff;
+    box-shadow: 0 -1px 2px 2px rgba(63, 63, 63, 0.1);
+    font: 400 18px/25px 'Bender';
+}
+
+.tabs-box {
+    position: absolute;
+    right: 10%;
+    height: 100%;
+    padding: calc(5% + 10px) 0;
+}
+
+.tabs {
+    float: right;
+    width: 90px;
+    background-color: #fff;
+}
+
+.tabs .tab {
+    cursor: pointer;
+    display: block;
+    width: calc(100% - 20px);
+    height: 30px;
+    margin: 20px 10px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.07);
+    font: 400 20px/30px 'STZhongSong';
+    box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.04);
+}
+
+.tabs .version .tab {
+    cursor: default;
+    font: 400 14px/30px 'Bender';
+}
+
+.asset-box {
+    display: inline-block;
+    float: none;
+}
+
+.side-box {
+    display: inline-block;
+    float: none;
+    width: 200px;
+    height: 400px;
+    background-color: #fff;
+}
+
+.left-box {
+    float: left;
+    width: 220px;
+}
+
+.selection {
+    width: calc(100% - 40px);
+    height: 50px;
+    margin: 20px;
+    text-indent: -55px;
+    font: 400 30px/50px 'STZhongSong';
+    background-color: rgba(0, 0, 0, 0.07);
+    box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.04);
+}
+
+.asset {
+    width: 200px;
+    height: 60px;
+    padding-right: 20px;
+    text-align: right;
+    font: 400 30px/60px 'Bender';
+}
+
+.main-box {
+    width: 780px;
+    height: 505px;
+    background-color: unset;
+}
+
+.products-container {
+    overflow: auto;
+    height: 420px;
+    background-color: #eee;
+}

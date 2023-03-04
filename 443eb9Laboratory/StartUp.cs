@@ -7,5 +7,6 @@ public class StartUp
     public static void Init()
     {
         UserDatabase.Init();
+        ChamberDatabase.Init();
     }
 }

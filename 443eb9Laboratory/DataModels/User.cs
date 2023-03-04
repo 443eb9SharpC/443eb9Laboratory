@@ -6,7 +6,7 @@ public class User
     public string email;
     public string password;
 
-    public User(string username, string email, string password)
+    public User(string username, string password, string email)
     {
         this.username = username;
         this.email = email;
