@@ -5,7 +5,7 @@ public class Crop
     public int id;
     public int amount;
     public int buyPrice;
-    public int sellingPrice;
+    public int sellPrice;
     public string name;
     public string latin;
     public float requiredTemperature;

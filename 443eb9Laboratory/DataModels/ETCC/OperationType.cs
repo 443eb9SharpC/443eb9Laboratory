@@ -3,5 +3,7 @@
 public enum OperationType
 {
     ETCC_BuySeed,
-    ETCC_PlantSeed
+    ETCC_PlantSeed,
+    ETCC_Harvest,
+    ETCC_SellFruit
 }

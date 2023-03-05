@@ -11,12 +11,15 @@ export enum InformationType {
     ETCC_Chunks,
     ETCC_Asset,
     ETCC_SeedStore,
-    ETCC_Storage
+    ETCC_Storage,
+    ETCC_SeedMarket
 }
 
 export enum OperationType {
     ETCC_BuySeed,
-    ETCC_PlantSeed
+    ETCC_PlantSeed,
+    ETCC_Harvest,
+    ETCC_SellFruit
 }
 
 export interface Chamber {
@@ -41,6 +44,7 @@ export interface Crop {
     name: string
     amount: number
     buyPrice: number
+    sellPrice: number
     plantTimeJS: number
     growthCycleJS: number
 }
@@ -53,6 +57,7 @@ export interface Chunk {
 
 export interface ChamberStorage {
     seeds: Crop[]
+    fruits: Crop[]
 }
 
 const cropToIcon: { [key: string]: string } = {}
@@ -63,3 +68,15 @@ cropToIcon['马铃薯'] = '&#xe62c;'
 cropToIcon['西瓜'] = '&#xf850;'
 cropToIcon['蓝莓'] = '&#xe624;'
 export { cropToIcon }
+
+const greekToNumber: { [key: string]: number } = {}
+greekToNumber['alpha'] = 0
+greekToNumber['beta'] = 1
+greekToNumber['gamma'] = 2
+greekToNumber['delta'] = 3
+greekToNumber['epsilon'] = 4
+greekToNumber['zeta'] = 5
+greekToNumber['eta'] = 6
+greekToNumber['theta'] = 7
+greekToNumber['iota'] = 8
+export { greekToNumber }

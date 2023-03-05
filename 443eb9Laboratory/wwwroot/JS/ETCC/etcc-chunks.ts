@@ -1,5 +1,5 @@
 import { connection, ipAddress } from "../signalr.js";
-import { Chunk, InformationType, cropToIcon } from "./etcc-datamodels.js";
+import { Chunk, InformationType, cropToIcon, greekToNumber, OperationType } from "./etcc-datamodels.js";
 
 connection.on('getChunksInfo', getChunksInfo)
 
@@ -68,4 +68,18 @@ async function updateTime() {
         }
         await new Promise(resolver => setTimeout(resolver, 1000))
     }
+}
+
+chunkIcons.forEach((icon) => {
+    icon.addEventListener('click', harvest)
+})
+
+function harvest(event: MouseEvent) {
+    let target = event.target as HTMLElement
+    target = target.parentElement
+    let chunkIndex = greekToNumber[target.classList[0]]
+    if (chunks[chunkIndex].isLocked) return
+    if (chunks[chunkIndex].cropOn == null) return
+    
+    connection.send('ETCC_ExecuteOperation', OperationType.ETCC_Harvest, connection.connectionId, ipAddress, [chunkIndex.toString()])
 }

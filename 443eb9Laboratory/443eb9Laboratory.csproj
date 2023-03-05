@@ -8,6 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Database\MarketDatabase.cs" />
+    <Compile Remove="Database\StoreDatabase.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="wwwroot\js\common.ts" />
     <Content Remove="wwwroot\js\login.ts" />
     <Content Remove="wwwroot\js\package-lock.json" />

@@ -5,6 +5,7 @@ namespace _443eb9Laboratory.Utils;
 
 public class IOOperator
 {
+    [DebuggerStepThrough]
     public static T ReadJson<T>(string path)
     {
         string jsonData = File.ReadAllText(path);

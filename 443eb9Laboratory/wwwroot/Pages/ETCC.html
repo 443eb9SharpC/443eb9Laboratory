@@ -229,7 +229,7 @@
         </div>
     </div>
 
-    <div class="box-container shop" style="display: none;">
+    <div class="box-container store" style="display: none;">
         <div class="left-box clearfix">
             <div class="side-box box">
                 <div class="top-bar">Selection</div>
@@ -247,8 +247,7 @@
         <div class="main-box box clearfix">
             <div class="top-bar">Shop</div>
             <div class="item-container seed-products-container">
-                <ul>
-                </ul>
+                <ul></ul>
             </div>
             <div class="decoration-bar">There's no ADs... so far</div>
         </div>
@@ -272,48 +271,7 @@
         <div class="main-box box clearfix">
             <div class="top-bar">Market</div>
             <div class="item-container clearfix">
-                <ul>
-                    <li>
-                        <div class="crop-product clearfix">
-                            <i class="crop-icon icon">&#xe602;</i>
-                            <h3 class="name">防风草</h3>
-                            <i class="highs-and-lows icon">&#xe7ee;</i>
-                            <h3 class="price">300μ</h3>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="crop-product clearfix">
-                            <i class="crop-icon icon">&#xe602;</i>
-                            <h3 class="name">防风草</h3>
-                            <i class="highs-and-lows icon">&#xe7ee;</i>
-                            <h3 class="price">300μ</h3>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="crop-product clearfix">
-                            <i class="crop-icon icon">&#xe602;</i>
-                            <h3 class="name">防风草</h3>
-                            <i class="highs-and-lows icon">&#xe7ee;</i>
-                            <h3 class="price">300μ</h3>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="crop-product clearfix">
-                            <i class="crop-icon icon">&#xe602;</i>
-                            <h3 class="name">防风草</h3>
-                            <i class="highs-and-lows icon">&#xe7ee;</i>
-                            <h3 class="price">300μ</h3>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="crop-product clearfix">
-                            <i class="crop-icon icon">&#xe602;</i>
-                            <h3 class="name">防风草</h3>
-                            <i class="highs-and-lows icon">&#xe7ee;</i>
-                            <h3 class="price">300μ</h3>
-                        </div>
-                    </li>
-                </ul>
+                <ul></ul>
             </div>
             <div class="decoration-bar">There's no ADs... so far</div>
         </div>
@@ -325,7 +283,10 @@
                 <div class="top-bar">Selection</div>
                 <ul>
                     <li>
-                        <button class="selection">种子</button>
+                        <button class="seed selection">种子</button>
+                    </li>
+                    <li>
+                        <button class="fruit selection">作物</button>
                     </li>
                 </ul>
             </div>
@@ -336,13 +297,25 @@
         </div>
         <div class="main-box box clearfix">
             <div class="top-bar">Storage</div>
-            <div class="item-container seed-container">
+            <div class="item-container seed-container" style="display: block;">
                 <ul>
-                    <li class="seed-item clearfix">
-                        <i class="seed-icon icon"></i>
+                    <li class="item clearfix">
+                        <i class="icon"></i>
                         <div class="description">
                             <h4 class="latin">Pastinaca sativa</h4>
                             <h3 class="name">防风草种子</h3>
+                            <h3 class="amount">4</h3>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="item-container fruit-container" style="display: none;">
+                <ul>
+                    <li class="item clearfix">
+                        <i class="icon"></i>
+                        <div class="description">
+                            <h4 class="latin">Pastinaca sativa</h4>
+                            <h3 class="name">防风草</h3>
                             <h3 class="amount">4</h3>
                         </div>
                     </li>
@@ -358,6 +331,7 @@
     <script type="module" src="../JS/ETCC/etcc-chunks.js"></script>
     <script type="module" src="../JS/ETCC/etcc-store.js"></script>
     <script type="module" src="../JS/ETCC/etcc-storage.js"></script>
+    <script type="module" src="../JS/ETCC/etcc-market.js"></script>
     <script src="../lib/microsoft/signalr/dist/browser/signalr.js"></script>
     <script src="../lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
 </body>

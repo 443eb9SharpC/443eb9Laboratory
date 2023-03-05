@@ -20,6 +20,7 @@
 }
 
 .chunk .crop-on-chunk {
+    cursor: pointer;
     position: absolute;
     top: 40px;
     left: 15px;

@@ -1,8 +1,9 @@
-﻿using _443eb9Laboratory.Utils;
+﻿using _443eb9Laboratory.DataModels.ETCC;
+using _443eb9Laboratory.Utils;
 
-namespace _443eb9Laboratory.DataModels.ETCC;
+namespace _443eb9Laboratory.Database;
 
-public class Store
+public class StoreDatabase
 {
     public static List<Crop> seeds = IOOperator.ReadJson<List<Crop>>("./Data/Store/Seed.json");
 

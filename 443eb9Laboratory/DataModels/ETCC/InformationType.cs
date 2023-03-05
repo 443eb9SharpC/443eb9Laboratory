@@ -6,5 +6,6 @@ public enum InformationType
     ETCC_Chunks,
     ETCC_Asset,
     ETCC_SeedStore,
-    ETCC_Storage
+    ETCC_Storage,
+    ETCC_SeedMarket
 }

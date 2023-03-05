@@ -42,7 +42,7 @@ public class WebHub : Hub
         ClientDatabase.AddKeyValuePair(ipAddress, username);
 
         string page;
-        if (ChamberDatabase.IsUserOwnedChamber(ipAddress))
+        if (Chamber.IsUserOwnedChamber(ipAddress))
         {
             page = "../Pages/ETCC.html";
         }
@@ -85,7 +85,7 @@ public class WebHub : Hub
             return;
         }
 
-        ChamberDatabase.AddChamber(chamberName, chamberDescription, ipAddress);
+        Chamber.AddChamber(chamberName, chamberDescription, ipAddress);
         await Clients.Client(connectionId).SendAsync("onChamberCreated");
     }
 
@@ -135,6 +135,9 @@ public class WebHub : Hub
             case InformationType.ETCC_Storage:
                 await ETCC_InformationIndexer.SendStorageInfo(ipAddress, Clients.Client(connectionId));
                 break;
+            case InformationType.ETCC_SeedMarket:
+                await ETCC_InformationIndexer.SendMarketInfo(Clients.Client(connectionId));
+                break;
         }
     }
 
@@ -147,6 +150,12 @@ public class WebHub : Hub
                 break;
             case OperationType.ETCC_PlantSeed:
                 await ETCC_OperationIndexer.ExecutePlantSeed(ipAddress, Clients.Client(connectionId), args[0], args[1]);
+                break;
+            case OperationType.ETCC_Harvest:
+                await ETCC_OperationIndexer.ExecuteHarvest(ipAddress, Clients.Client(connectionId), args[0]);
+                break;
+            case OperationType.ETCC_SellFruit:
+                await ETCC_OperationIndexer.ExecuteSellFruit(ipAddress, Clients.Client(connectionId), args[0]);
                 break;
         }
     }

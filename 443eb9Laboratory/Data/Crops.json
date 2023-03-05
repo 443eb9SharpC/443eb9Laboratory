@@ -3,7 +3,7 @@
         "id": 0,
         "amount": 1,
         "buyPrice": 200,
-        "sellingPrice": 0,
+        "sellPrice": 250,
         "name": "防风草",
         "latin": "Pastinaca sativa",
         "requiredTemperature": 0,
@@ -16,14 +16,14 @@
         "plantTimeJS": 0,
         "growthCycleJS": 0,
         "plantTime": "0001-01-01T00:00:00",
-        "growthCycle": "1.02:00:00",
+        "growthCycle": "0.05:00:00",
         "variant": null
     },
     {
         "id": 0,
         "amount": 1,
         "buyPrice": 300,
-        "sellingPrice": 0,
+        "sellPrice": 400,
         "name": "草莓",
         "latin": "Fragaria × ananassa",
         "requiredTemperature": 0,
@@ -36,14 +36,14 @@
         "plantTimeJS": 0,
         "growthCycleJS": 0,
         "plantTime": "0001-01-01T00:00:00",
-        "growthCycle": "1.02:00:00",
+        "growthCycle": "1.08:00:00",
         "variant": null
     },
     {
         "id": 0,
         "amount": 1,
         "buyPrice": 400,
-        "sellingPrice": 0,
+        "sellPrice": 600,
         "name": "番茄",
         "latin": "Solanum lycopersicum",
         "requiredTemperature": 0,
@@ -56,14 +56,14 @@
         "plantTimeJS": 0,
         "growthCycleJS": 0,
         "plantTime": "0001-01-01T00:00:00",
-        "growthCycle": "1.02:00:00",
+        "growthCycle": "1.20:00:00",
         "variant": null
     },
     {
         "id": 0,
         "amount": 1,
         "buyPrice": 350,
-        "sellingPrice": 0,
+        "sellPrice": 450,
         "name": "马铃薯",
         "latin": "Solanum tuberosum",
         "requiredTemperature": 0,
@@ -76,14 +76,14 @@
         "plantTimeJS": 0,
         "growthCycleJS": 0,
         "plantTime": "0001-01-01T00:00:00",
-        "growthCycle": "1.02:00:00",
+        "growthCycle": "1.00:00:00",
         "variant": null
     },
     {
         "id": 0,
         "amount": 1,
         "buyPrice": 250,
-        "sellingPrice": 0,
+        "sellPrice": 650,
         "name": "西瓜",
         "latin": "Citrullus lanatus",
         "requiredTemperature": 0,
@@ -96,14 +96,14 @@
         "plantTimeJS": 0,
         "growthCycleJS": 0,
         "plantTime": "0001-01-01T00:00:00",
-        "growthCycle": "1.02:00:00",
+        "growthCycle": "2.10:00:00",
         "variant": null
     },
     {
         "id": 0,
         "amount": 1,
         "buyPrice": 320,
-        "sellingPrice": 0,
+        "sellPrice": 0,
         "name": "蓝莓",
         "latin": "Cyanococcus",
         "requiredTemperature": 0,
@@ -116,7 +116,7 @@
         "plantTimeJS": 0,
         "growthCycleJS": 0,
         "plantTime": "0001-01-01T00:00:00",
-        "growthCycle": "1.02:00:00",
+        "growthCycle": "20:00:00",
         "variant": null
     }
 ]

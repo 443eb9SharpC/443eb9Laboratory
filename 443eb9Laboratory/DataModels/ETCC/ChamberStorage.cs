@@ -3,4 +3,5 @@
 public class ChamberStorage
 {
     public List<Crop> seeds;
+    public List<Crop> fruits;
 }

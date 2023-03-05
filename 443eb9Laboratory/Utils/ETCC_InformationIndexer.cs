@@ -9,30 +9,34 @@ public class ETCC_InformationIndexer
 {
     public async static Task SendDashBoardInfo(string ipAddress, IClientProxy client)
     {
-        Chamber chamber = ChamberDatabase.GetChamber(ipAddress);
+        Chamber chamber = Chamber.GetChamber(ipAddress);
         await client.SendAsync("getDashBoardInfo", JsonConvert.SerializeObject(chamber));
     }
 
     public async static Task SendChunksInfo(string ipAddress, IClientProxy client)
     {
-        List<Chunk> chunks = ChamberDatabase.GetChamber(ipAddress).chunks;
+        List<Chunk> chunks = Chamber.GetChamber(ipAddress).chunks;
         await client.SendAsync("getChunksInfo", JsonConvert.SerializeObject(chunks));
     }
 
     public async static Task SendAssetInfo(string ipAddress, IClientProxy client)
     {
-        await client.SendAsync("getAssetInfo", ChamberDatabase.GetChamber(ipAddress).assets);
+        await client.SendAsync("getAssetInfo", Chamber.GetChamber(ipAddress).assets);
     }
 
     public async static Task SendSeedStoreInfo(IClientProxy client)
     {
-        List<Crop> seedStore = IOOperator.ReadJson<List<Crop>>("./Data/Store/Seed.json");
-        await client.SendAsync("getSeedStoreInfo", JsonConvert.SerializeObject(seedStore));
+        await client.SendAsync("getSeedStoreInfo", JsonConvert.SerializeObject(CropDatabase.crops));
     }
 
     public async static Task SendStorageInfo(string ipAddress, IClientProxy client)
     {
-        Chamber chamber = ChamberDatabase.GetChamber(ipAddress);
+        Chamber chamber = Chamber.GetChamber(ipAddress);
         await client.SendAsync("getStorageInfo", JsonConvert.SerializeObject(chamber.chamberStorage));
+    }
+
+    public async static Task SendMarketInfo(IClientProxy client)
+    {
+        await client.SendAsync("getFruitMarketInfo", JsonConvert.SerializeObject(CropDatabase.crops));
     }
 }
