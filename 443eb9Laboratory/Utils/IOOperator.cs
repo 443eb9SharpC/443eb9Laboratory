@@ -5,7 +5,6 @@ namespace _443eb9Laboratory.Utils;
 
 public class IOOperator
 {
-    [DebuggerStepThrough]
     public static T ReadJson<T>(string path)
     {
         string jsonData = File.ReadAllText(path);
@@ -27,9 +26,22 @@ public class IOOperator
         return image;
     }
 
+    [DebuggerStepThrough]
     public static void ToJson(string path, object? obj)
     {
         string jsonData = JsonConvert.SerializeObject(obj, Formatting.Indented);
+
+        string[] paths = path.Split('/');
+        string parent = "";
+        for (int i = 0; i < paths.Length - 1; i++)
+        {
+            parent += paths[i] + '/';
+        }
+
+        if (!Directory.Exists(parent))
+        {
+            Directory.CreateDirectory(parent);
+        }
         StreamWriter streamWriter = File.CreateText(path);
         streamWriter.Write(jsonData);
         streamWriter.Close();

@@ -1,0 +1,98 @@
+{
+  "id": 0,
+  "level": 0,
+  "assets": 148450,
+  "cropsTotalPlanted": 7,
+  "owner": "443eb9",
+  "name": "测试",
+  "description": "测试",
+  "chamberStorage": {
+    "seeds": []
+  },
+  "chunks": [
+    {
+      "level": 0,
+      "isLocked": false,
+      "cropOn": {
+        "id": 5,
+        "amount": 1,
+        "buyPrice": 350,
+        "sellingPrice": 0,
+        "name": "马铃薯",
+        "latin": "Solanum tuberosum",
+        "requiredTemperature": 0.0,
+        "requiredHudimity": 0.0,
+        "requiredIllumination": 0.0,
+        "requiredCarbonDioxide": 0.0,
+        "requiredpH": 0.0,
+        "variantPotential": 0.0,
+        "seedProductionRate": 0.0,
+        "plantTimeJS": 1678004148681,
+        "growthCycleJS": 93600000,
+        "plantTime": "2023-03-05T08:15:48.6813938Z",
+        "growthCycle": "1.02:00:00",
+        "variant": null
+      }
+    },
+    {
+      "level": 0,
+      "isLocked": false,
+      "cropOn": {
+        "id": 6,
+        "amount": 1,
+        "buyPrice": 350,
+        "sellingPrice": 0,
+        "name": "马铃薯",
+        "latin": "Solanum tuberosum",
+        "requiredTemperature": 0.0,
+        "requiredHudimity": 0.0,
+        "requiredIllumination": 0.0,
+        "requiredCarbonDioxide": 0.0,
+        "requiredpH": 0.0,
+        "variantPotential": 0.0,
+        "seedProductionRate": 0.0,
+        "plantTimeJS": 1678004172570,
+        "growthCycleJS": 93600000,
+        "plantTime": "2023-03-05T08:16:12.5708665Z",
+        "growthCycle": "1.02:00:00",
+        "variant": null
+      }
+    },
+    {
+      "level": 0,
+      "isLocked": false,
+      "cropOn": null
+    },
+    {
+      "level": 0,
+      "isLocked": true,
+      "cropOn": null
+    },
+    {
+      "level": 0,
+      "isLocked": true,
+      "cropOn": null
+    },
+    {
+      "level": 0,
+      "isLocked": true,
+      "cropOn": null
+    },
+    {
+      "level": 0,
+      "isLocked": true,
+      "cropOn": null
+    },
+    {
+      "level": 0,
+      "isLocked": true,
+      "cropOn": null
+    },
+    {
+      "level": 0,
+      "isLocked": true,
+      "cropOn": null
+    }
+  ],
+  "modules": []
+}

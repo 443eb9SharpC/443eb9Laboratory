@@ -8,7 +8,15 @@ export enum ModuleType {
 
 export enum InformationType {
     ETCC_DashBoard,
-    ETCC_Chunks
+    ETCC_Chunks,
+    ETCC_Asset,
+    ETCC_SeedStore,
+    ETCC_Storage
+}
+
+export enum OperationType {
+    ETCC_BuySeed,
+    ETCC_PlantSeed
 }
 
 export interface Chamber {
@@ -29,9 +37,12 @@ export interface Module {
 
 export interface Crop {
     id: number
+    latin: string
     name: string
-    plantTime: number
-    growthCycle: number
+    amount: number
+    buyPrice: number
+    plantTimeJS: number
+    growthCycleJS: number
 }
 
 export interface Chunk {
@@ -40,8 +51,8 @@ export interface Chunk {
     cropOn: Crop
 }
 
-export interface CropStore{
-    name:string
+export interface ChamberStorage {
+    seeds: Crop[]
 }
 
 const cropToIcon: { [key: string]: string } = {}

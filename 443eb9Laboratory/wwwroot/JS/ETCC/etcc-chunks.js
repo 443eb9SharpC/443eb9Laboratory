@@ -33,6 +33,7 @@ function renderInfo() {
         chunkIcons[i].innerHTML = cropToIcon[chunks[i].cropOn.name];
         chunkIds[i].innerText = '#' + chunks[i].cropOn.id;
         chunkNames[i].innerText = chunks[i].cropOn.name;
+        timeRemainTitles[i].innerText = '剩余成熟时间';
     }
     updateTime();
 }
@@ -43,9 +44,21 @@ async function updateTime() {
                 continue;
             if (chunks[i].cropOn == null)
                 continue;
-            let remain = new Date(Date.now() - chunks[i].cropOn.plantTime - chunks[i].cropOn.growthCycle);
-            timeRemains[i].innerText = `${remain.getDay()}D ${remain.getHours()}:${remain.getMinutes()}:${remain.getSeconds}`;
+            const remainingTimeMs = chunks[i].cropOn.growthCycleJS - (Date.now() - chunks[i].cropOn.plantTimeJS);
+            const remainingTime = new Date(remainingTimeMs);
+            const remainingDays = Math.floor(remainingTimeMs / (1000 * 60 * 60 * 24));
+            const remainingHours = remainingTime.getUTCHours();
+            const remainingMinutes = remainingTime.getUTCMinutes();
+            const remainingSeconds = remainingTime.getUTCSeconds();
+            const formattedTime = `${remainingDays}D ${remainingHours}:${remainingMinutes}:${remainingSeconds}`;
+            if (remainingTimeMs > 0) {
+                timeRemains[i].innerText = formattedTime;
+            }
+            else {
+                timeRemainTitles[i].innerText = '作物已成熟';
+                timeRemains[i].innerText = '';
+            }
         }
-        await new Promise(resolver => setTimeout(resolver, 500));
+        await new Promise(resolver => setTimeout(resolver, 1000));
     }
 }

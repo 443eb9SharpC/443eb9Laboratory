@@ -12,10 +12,11 @@ public class WebHub : Hub
     public Random random = new Random();
     public static Dictionary<string, string> verifCodes = new Dictionary<string, string>();
 
-    public override Task OnConnectedAsync()
+    public override async Task OnConnectedAsync()
     {
-        Clients.Caller.SendAsync("createMessage", "连接成功", "成功连接到服务端");
-        return Task.CompletedTask;
+        Console.WriteLine($"[{DateTime.Now}] {Clients.Caller} Connected");
+        Thread.Sleep(1000);
+        await Clients.Caller.SendAsync("createMessage", "连接成功", "成功连接到服务端");
     }
 
     public override Task OnDisconnectedAsync(Exception? exception)
@@ -37,8 +38,11 @@ public class WebHub : Hub
             return;
         }
 
+        Console.WriteLine($"[{DateTime.Now}][{ipAddress}][{username}] Logged in");
+        ClientDatabase.AddKeyValuePair(ipAddress, username);
+
         string page;
-        if (ChamberDatabase.IsUserOwnedChamber(username))
+        if (ChamberDatabase.IsUserOwnedChamber(ipAddress))
         {
             page = "../Pages/ETCC.html";
         }
@@ -47,8 +51,6 @@ public class WebHub : Hub
             page = "../Pages/ETCC-New.html";
         }
 
-        Console.WriteLine($"[{DateTime.Now}][{ipAddress}][{username}] Logged in");
-        ClientDatabase.AddKeyValuePair(ipAddress, username);
         await Clients.Client(connectionId).SendAsync("loginAnim", page);
     }
 
@@ -114,15 +116,37 @@ public class WebHub : Hub
         smtpClient.Send(verifCode);
     }
 
-    public void ETCC_SendInformation(InformationType informationType, string connectionId, string ipAddress)
+    public async void ETCC_SendInformation(InformationType informationType, string connectionId, string ipAddress)
     {
         switch (informationType)
         {
             case InformationType.ETCC_DashBoard:
-                ETCC_InformationIndexer.SendDashBoardInfo(connectionId, ipAddress, Clients.Client(connectionId));
+                await ETCC_InformationIndexer.SendDashBoardInfo(ipAddress, Clients.Client(connectionId));
                 break;
             case InformationType.ETCC_Chunks:
-                ETCC_InformationIndexer.SendChunksInfo(connectionId, ipAddress, Clients.Client(connectionId));
+                await ETCC_InformationIndexer.SendChunksInfo(ipAddress, Clients.Client(connectionId));
+                break;
+            case InformationType.ETCC_Asset:
+                await ETCC_InformationIndexer.SendAssetInfo(ipAddress, Clients.Client(connectionId));
+                break;
+            case InformationType.ETCC_SeedStore:
+                await ETCC_InformationIndexer.SendSeedStoreInfo(Clients.Client(connectionId));
+                break;
+            case InformationType.ETCC_Storage:
+                await ETCC_InformationIndexer.SendStorageInfo(ipAddress, Clients.Client(connectionId));
+                break;
+        }
+    }
+
+    public async Task ETCC_ExecuteOperation(OperationType operationType, string connectionId, string ipAddress, string[] args)
+    {
+        switch (operationType)
+        {
+            case OperationType.ETCC_BuySeed:
+                await ETCC_OperationIndexer.ExecuteBuySeed(ipAddress, Clients.Client(connectionId), args[0]);
+                break;
+            case OperationType.ETCC_PlantSeed:
+                await ETCC_OperationIndexer.ExecutePlantSeed(ipAddress, Clients.Client(connectionId), args[0], args[1]);
                 break;
         }
     }

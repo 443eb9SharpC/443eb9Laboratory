@@ -1,37 +1,83 @@
-﻿using _443eb9Laboratory.DataModels;
-using _443eb9Laboratory.DataModels.ETCC;
+﻿using _443eb9Laboratory.DataModels.ETCC;
 using _443eb9Laboratory.Utils;
 
 namespace _443eb9Laboratory.Database;
 
 public class ChamberDatabase
 {
-    private static List<Chamber> database;
-
-    public static void Init()
+    public static void SaveChamber(string ipAddress, Chamber chamber)
     {
-        Console.WriteLine($"[{DateTime.Now}] ChamberDatabase Init");
-        database = IOOperator.ReadJson<List<Chamber>>("Data/ChamberDatabase.json");
-    }
-
-    public static void SaveDatabase()
-    {
-        IOOperator.ToJson("Data/ChamberDatabase.json", database);
+        IOOperator.ToJson($"./Data/Chambers/{ClientDatabase.GetUsername(ipAddress)}/chamber.json", chamber);
     }
 
     public static void AddChamber(string chamberName, string chamberDescription, string ipAddress)
     {
-        database.Add(new Chamber(database.Count, ClientDatabase.GetUsername(ipAddress), chamberName, chamberDescription));
-        SaveDatabase();
+        Chamber newChamber = new Chamber
+        {
+            id = Directory.GetDirectories($"./Data/Chambers").Length,
+            level = 0,
+            assets = 1000,
+            cropsTotalPlanted = 0,
+            owner = ClientDatabase.GetUsername(ipAddress),
+            name = chamberName,
+            description = chamberDescription,
+            chamberStorage = new ChamberStorage { seeds = new List<Crop>() },
+            chunks = new List<Chunk>()
+            {
+                new Chunk(),
+                new Chunk(),
+                new Chunk(),
+                new Chunk(){ isLocked = true },
+                new Chunk(){ isLocked = true },
+                new Chunk(){ isLocked = true },
+                new Chunk(){ isLocked = true },
+                new Chunk(){ isLocked = true },
+                new Chunk(){ isLocked = true }
+            },
+            modules = new List<Module>()
+        };
+        IOOperator.ToJson($"./Data/Chambers/{ClientDatabase.GetUsername(ipAddress)}/chamber.json", newChamber);
     }
 
-    public static Chamber GetChamber(string username)
+
+    public static Chamber GetChamber(string ipAddress)
     {
-        return database.Find(chamber => chamber.owner == username);
+        return IOOperator.ReadJson<Chamber>($"./Data/Chambers/{ClientDatabase.GetUsername(ipAddress)}/chamber.json");
     }
 
-    public static bool IsUserOwnedChamber(string username)
+    public static void AddSeedToChamber(string ipAddress, Crop seed)
     {
-        return database.Find(chamber => chamber.owner == username) != null;
+        Chamber chamber = GetChamber(ipAddress);
+        int index = chamber.chamberStorage.seeds.FindIndex(seedInStorage => seedInStorage.name == seed.name);
+        if (index == -1)
+        {
+            chamber.chamberStorage.seeds.Add(seed);
+        }
+        else
+        {
+            chamber.chamberStorage.seeds[index].amount++;
+        }
+        SaveChamber(ipAddress, chamber);
+    }
+
+    public static void RemoveSeedFromChamber(string ipAddress, string seedName)
+    {
+        Chamber chamber = GetChamber(ipAddress);
+        int index = chamber.chamberStorage.seeds.FindIndex(seedInStorage => seedInStorage.name == seedName);
+        if (chamber.chamberStorage.seeds[index].amount == 1)
+        {
+            chamber.chamberStorage.seeds.RemoveAt(index);
+        }
+        else
+        {
+            chamber.chamberStorage.seeds[index].amount--;
+        }
+        SaveChamber(ipAddress, chamber);
+    }
+
+    public static bool IsUserOwnedChamber(string ipAddress)
+    {
+        string username = ClientDatabase.GetUsername(ipAddress);
+        return Directory.Exists($"./Data/Chambers/{username}");
     }
 }

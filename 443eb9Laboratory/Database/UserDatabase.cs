@@ -6,16 +6,10 @@ namespace _443eb9Laboratory.Database;
 
 public class UserDatabase
 {
-    private static List<User> database;
-
-    public static void Init()
-    {
-        Console.WriteLine($"[{DateTime.Now}] UserDatabase Init");
-        database = IOOperator.ReadJson<List<User>>("Data/UserDatabase.json");
-    }
+    private static List<User> database = IOOperator.ReadJson<List<User>>("./Data/UserDatabase.json");
 
     public static void SaveDatabase() =>
-        IOOperator.ToJson("Data/UserDatabase.json", database);
+        IOOperator.ToJson("./Data/UserDatabase.json", database);
 
     public static void AddUser(string username, string password, string email)
     {

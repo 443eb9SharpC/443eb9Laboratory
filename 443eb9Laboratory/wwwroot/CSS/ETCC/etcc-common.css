@@ -67,7 +67,7 @@ body {
     font: 400 14px/30px 'Bender';
 }
 
-.asset-box {
+.assets-box {
     display: inline-block;
     float: none;
 }
@@ -95,7 +95,7 @@ body {
     box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.04);
 }
 
-.asset {
+.assets {
     width: 200px;
     height: 60px;
     padding-right: 20px;
@@ -109,8 +109,36 @@ body {
     background-color: unset;
 }
 
-.products-container {
+.item-container {
     overflow: auto;
     height: 420px;
     background-color: #eee;
+}
+
+.chunk-select-panel {
+    position: absolute;
+    display: none;
+    z-index: 10;
+    text-align: center;
+    background-color: #fff;
+    border: 2px solid #aaa;
+}
+
+.chunk-select-panel .title {
+    margin: 10px;
+    font: 400 20px 'Source Han Sans CN';
+}
+
+.chunk-select-panel .chunks {
+    margin: 10px;
+    border-collapse: collapse;
+}
+
+.chunk-select-panel .chunks td {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    font: 400 20px/30px 'Bender';
+    border: 2px solid #aaa;
 }

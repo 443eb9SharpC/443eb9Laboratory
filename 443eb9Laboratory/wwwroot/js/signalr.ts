@@ -16,6 +16,7 @@ httpRequest.onreadystatechange = function () {
 }
 
 await connection.start()
+
 while (!ipAddress) {
     await new Promise(resolver => setTimeout(resolver, 200))
 }

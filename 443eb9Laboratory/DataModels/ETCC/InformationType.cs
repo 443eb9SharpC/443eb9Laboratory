@@ -3,5 +3,8 @@
 public enum InformationType
 {
     ETCC_DashBoard,
-    ETCC_Chunks
+    ETCC_Chunks,
+    ETCC_Asset,
+    ETCC_SeedStore,
+    ETCC_Storage
 }

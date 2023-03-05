@@ -24,7 +24,6 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 //Test.Tst();
-StartUp.Init();
 
 app.MapHub<WebHub>("/hub");
 app.Run();

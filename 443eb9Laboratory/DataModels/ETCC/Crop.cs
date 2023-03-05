@@ -3,9 +3,11 @@
 public class Crop
 {
     public int id;
-    public int name;
+    public int amount;
     public int buyPrice;
     public int sellingPrice;
+    public string name;
+    public string latin;
     public float requiredTemperature;
     public float requiredHudimity;
     public float requiredIllumination;
@@ -13,7 +15,9 @@ public class Crop
     public float requiredpH;
     public float variantPotential;
     public float seedProductionRate;
-    public long plantTime;
-    public long growthCycle;
+    public long plantTimeJS;
+    public long growthCycleJS;
+    public DateTime plantTime;
+    public TimeSpan growthCycle;
     public List<VariantType> variant;
 }

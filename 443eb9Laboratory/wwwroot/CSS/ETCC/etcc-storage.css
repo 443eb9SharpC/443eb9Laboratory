@@ -1,4 +1,4 @@
-.seed-product {
+.seed-item {
     cursor: pointer;
     position: relative;
     float: left;
@@ -8,34 +8,34 @@
     box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.04);
 }
 
-.seed-product * {
+.seed-item * {
     cursor: pointer;
 }
 
-.seed-product .seed-icon {
+.seed-item .seed-icon {
     float: left;
     margin: 10px;
     margin-right: 20px;
     font-size: 50px;
 }
 
-.seed-product .description {
+.seed-item .description {
     margin-top: 10px;
     float: left;
 }
 
-.seed-product .latin {
+.seed-item .latin {
     font: 400 16px 'Bender';
 }
 
-.seed-product .name {
+.seed-item .name {
     margin-top: -7px;
     font: 400 27px 'STZhongSong';
 }
 
-.seed-product .price {
+.seed-item .amount {
     position: absolute;
-    top: 5px;
+    top: 10px;
     right: 15px;
     font: 400 40px 'Bender';
 }

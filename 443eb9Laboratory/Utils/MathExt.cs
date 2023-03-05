@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using Microsoft.VisualBasic;
+using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -11,7 +12,7 @@ public class MathExt
     [DebuggerStepThrough]
     public static void Shuffle<T>(List<T> list)
     {
-        int index = 0;
+        int index;
         T temp;
         for (int i = 0; i < list.Count; i++)
         {
@@ -25,6 +26,7 @@ public class MathExt
         }
     }
 
+    [DebuggerStepThrough]
     public static string MD5Encrypt64(string password)
     {
         string cl = password;
@@ -33,5 +35,17 @@ public class MathExt
                                 // 加密后是一个字节类型的数组，这里要注意编码UTF8/Unicode等的选择　
         byte[] s = md5.ComputeHash(Encoding.UTF8.GetBytes(cl));
         return Convert.ToBase64String(s);
+    }
+
+    [DebuggerStepThrough]
+    public static long ConvertToJSTime(DateTime dateTime)
+    {
+        return (long)dateTime.Subtract(new DateTime(1970, 1, 1)).TotalMilliseconds;
+    }
+
+    [DebuggerStepThrough]
+    public static long ConvertToJSTime(TimeSpan timeSpan)
+    {
+        return (long)timeSpan.TotalMilliseconds;
     }
 }
