@@ -1,22 +1,20 @@
 import { connection, ipAddress } from "../signalr.js";
-import { InformationType } from "./etcc-datamodels.js";
+import { ConditionType, InformationType, OperationType } from "./etcc-datamodels.js";
 import { Chamber } from "./etcc-datamodels.js";
 
 connection.on('getDashBoardInfo', getDashBoardInfo)
 
+let isFirstLoad = true
+
 let chamber: Chamber
 
-let name = document.querySelector('.status-box .name') as HTMLTitleElement
-let id = document.querySelector('.status-box .id') as HTMLTitleElement
-let owner = document.querySelector('.status-box .owner') as HTMLTitleElement
-let description = document.querySelector('.status-box .description') as HTMLTitleElement
-let level = document.querySelector('.status-box .level') as HTMLTitleElement
+let name = document.querySelector('.dashboard .status-box .name') as HTMLTitleElement
+let id = document.querySelector('.dashboard .status-box .id') as HTMLTitleElement
+let owner = document.querySelector('.dashboard .status-box .owner') as HTMLTitleElement
+let description = document.querySelector('.dashboard .status-box .description') as HTMLTitleElement
+let level = document.querySelector('.dashboard .status-box .level') as HTMLTitleElement
 
-let temp = document.querySelector('.temp-module .module-data') as HTMLDivElement
-let hudimity = document.querySelector('.hudimity-module .module-data') as HTMLDivElement
-let illumination = document.querySelector('.illumination-module .module-data') as HTMLDivElement
-let carbonDioxide = document.querySelector('.carbonDioxide-module .module-data') as HTMLDivElement
-let pH = document.querySelector('.pH-module .module-data') as HTMLDivElement
+let moduleData = document.querySelectorAll('.dashboard .module-box .module-data') as NodeListOf<HTMLElement>
 
 connection.invoke('ETCC_SendInformation', InformationType.ETCC_DashBoard, connection.connectionId, ipAddress)
 
@@ -32,41 +30,21 @@ function renderInfo() {
     description.innerText = chamber.description
     level.innerText = 'Lv. ' + chamber.level.toString()
 
-    if (chamber.modules.length > 0 && chamber.modules[0] != null) {
-        temp.innerText = chamber.modules[0].value.toString()
-    }
-    else {
-        temp.innerText = "Unavaliable"
-    }
-
-    if (chamber.modules.length > 1 && chamber.modules[1] != null) {
-        hudimity.innerText = chamber.modules[1].value.toString()
-    }
-    else {
-        hudimity.innerText = "Unavaliable"
-    }
-
-    if (chamber.modules.length > 2 && chamber.modules[2] != null) {
-        illumination.innerText = chamber.modules[2].value.toString()
-    }
-    else {
-        illumination.innerText = "Unavaliable"
+    for (let i = 0; i < moduleData.length; i++) {
+        if (chamber.modulesJS.length <= i) {
+            moduleData[i].innerText = 'Unavaliable'
+            continue
+        }
+        if (chamber.modulesJS[i] == null)
+            moduleData[i].innerText = 'Unavaliable'
+        if (chamber.modulesJS[i].value == -1)
+            moduleData[i].innerText = 'NaN'
+        else
+            moduleData[i].innerText = chamber.modulesJS[i].value.toString()
     }
 
-    if (chamber.modules.length > 3 && chamber.modules[3] != null) {
-        carbonDioxide.innerText = chamber.modules[3].value.toString()
-    }
-    else {
-        carbonDioxide.innerText = "Unavaliable"
-    }
-
-    if (chamber.modules.length > 4 && chamber.modules[4] != null) {
-        pH.innerText = chamber.modules[4].value.toString()
-    }
-    else {
-        pH.innerText = "Unavaliable"
-    }
-    onPageSwitch()
+    if (isFirstLoad)
+        onPageSwitch()
 }
 
 async function onPageSwitch() {
@@ -94,4 +72,140 @@ async function onPageSwitch() {
     titleBox.style.opacity = "1"
     moduleContainer.style.opacity = "1"
     statusBox.style.opacity = "1"
+
+    isFirstLoad = false
+}
+
+let moduleBoxes = document.querySelectorAll('.dashboard .module-box') as NodeListOf<HTMLDivElement>
+let valueSlider = document.querySelector('.slider') as HTMLElement
+
+let originalValue = NaN
+moduleBoxes.forEach(box => {
+    box.addEventListener('click', openSlider)
+});
+
+let selectedModuleId: number
+let selectedConditionType: ConditionType
+let selectedModuleRect: DOMRect
+let sliderTrackRect: DOMRect
+
+function openSlider(event: MouseEvent) {
+    let target = event.target as HTMLElement
+    while (!target.classList.contains('module-box')) {
+        target = target.parentElement
+    }
+
+    switch (target.classList[0]) {
+        case 'temp-module':
+            selectedModuleId = 0
+            selectedConditionType = ConditionType.Temperature
+            break
+        case 'hudimity-module':
+            selectedModuleId = 1
+            selectedConditionType = ConditionType.Hudimity
+            break
+        case 'illumination-module':
+            selectedModuleId = 2
+            selectedConditionType = ConditionType.Illumination
+            break
+        case 'carbonDioxide-module':
+            selectedModuleId = 3
+            selectedConditionType = ConditionType.CarbonDioxide
+            break
+        case 'pH-module':
+            selectedModuleId = 4
+            selectedConditionType = ConditionType.PH
+            break
+    }
+
+    let moduleEnabled = false
+    chamber.modulesJS.forEach(mod => {
+        if (mod.conditionType == selectedConditionType) {
+            moduleEnabled = true
+        }
+    })
+    if (!moduleEnabled) {
+        valueSlider.style.display = 'none'
+        onDrag = false
+        return
+    }
+
+    if (valueSlider.style.display == 'none')
+        valueSlider.style.display = 'block'
+    else {
+        valueSlider.style.display = 'none'
+        if (selectedModuleId != null)
+            moduleData[selectedModuleId].innerText = originalValue.toString()
+        return
+    }
+
+    switch (selectedConditionType) {
+        case ConditionType.Temperature:
+            maxValue = 50
+            minValue = 5
+            break
+        case ConditionType.Hudimity:
+            maxValue = 95
+            minValue = 20
+            break
+        case ConditionType.Illumination:
+            maxValue = 300000
+            minValue = 0
+            break
+        case ConditionType.CarbonDioxide:
+            maxValue = 1000
+            minValue = 100
+            break
+        case ConditionType.PH:
+            maxValue = 12
+            minValue = 2
+            break
+    }
+
+    originalValue = parseFloat(moduleData[selectedModuleId].innerText)
+
+    selectedModuleRect = moduleBoxes[selectedModuleId].getBoundingClientRect()
+    let posX = selectedModuleRect.x
+    let posY = selectedModuleRect.y + moduleBoxes[selectedModuleId].clientHeight
+    let width = moduleBoxes[selectedModuleId].clientWidth
+
+    valueSlider.style.transform = `translate(${posX}px, ${posY}px)`
+    valueSlider.style.width = width.toString()
+
+    posX = parseFloat(moduleData[selectedModuleId].innerText) / (maxValue - minValue) * sliderTrack.clientWidth - sliderTrack.clientWidth * 0.11
+    if (Number.isNaN(posX))
+        posX = 0
+    sliderBlock.style.transform = `translate(${posX}px, 0)`
+
+    sliderTrackRect = sliderTrack.getBoundingClientRect()
+}
+
+let sliderBlock = valueSlider.querySelector('.block') as HTMLElement
+let sliderTrack = valueSlider.querySelector('.track') as HTMLElement
+let silderTick = valueSlider.querySelector('.tick') as HTMLElement
+sliderBlock.addEventListener('mousemove', changeSliderValue)
+sliderBlock.addEventListener('mousedown', () => { onDrag = true })
+sliderBlock.addEventListener('mouseup', () => { onDrag = false })
+silderTick.addEventListener('click', submitSliderValue)
+
+let onDrag = false
+
+let maxValue: number
+let minValue: number
+
+function changeSliderValue(event: MouseEvent) {
+    if (!onDrag) return
+
+    let posX = event.clientX - sliderTrackRect.x
+    if (event.clientX < sliderTrackRect.x || event.clientX > sliderTrackRect.right)
+        return
+    sliderBlock.style.transform = `translate(${posX}px, 0)`
+
+    let value = posX / sliderTrack.offsetWidth
+    moduleData[selectedModuleId].innerText = (minValue + (maxValue - minValue) * value).toFixed(2).toString()
+}
+
+function submitSliderValue() {
+    valueSlider.style.display = 'none'
+    connection.invoke('ETCC_ExecuteOperation', OperationType.ETCC_ChangeModuleData, connection.connectionId, ipAddress, [moduleData[selectedModuleId].innerText, selectedConditionType.toString()])
 }

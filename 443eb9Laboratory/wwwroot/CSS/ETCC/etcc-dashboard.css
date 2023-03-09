@@ -46,6 +46,11 @@
     box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.04);
 }
 
+.module-box,
+.module-box * {
+    cursor: pointer;
+}
+
 .module-box .module-icon {
     position: absolute;
     top: -40px;

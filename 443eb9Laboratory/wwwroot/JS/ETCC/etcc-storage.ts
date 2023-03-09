@@ -11,6 +11,8 @@ let fruitContainer = document.querySelector('.fruit-container ul') as HTMLUListE
 let seedPage = document.querySelector('.seed-container') as HTMLUListElement
 let fruitPage = document.querySelector('.fruit-container') as HTMLUListElement
 
+fruitPage.style.display = 'none'
+
 connection.invoke('ETCC_SendInformation', InformationType.ETCC_Storage, connection.connectionId, ipAddress)
 
 export function getStorageInfo(json: string) {

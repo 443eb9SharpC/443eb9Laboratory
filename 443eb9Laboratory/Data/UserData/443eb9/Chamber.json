@@ -1,0 +1,138 @@
+{
+  "id": 0,
+  "level": 0,
+  "assets": 998900,
+  "cropsTotalPlanted": 0,
+  "owner": "443eb9",
+  "name": "测试",
+  "description": "测试",
+  "chamberStorage": {
+    "seeds": [
+      {
+        "id": 0,
+        "amount": 1,
+        "buyPrice": 250,
+        "sellPrice": 375,
+        "name": "草莓",
+        "latin": "Fragaria × ananassa",
+        "variantPotential": 0.0,
+        "seedProductionRate": 0.0,
+        "plantTimeJS": 0,
+        "growthCycleJS": 0,
+        "plantTime": "0001-01-01T00:00:00",
+        "growthCycle": "3.00:00:00",
+        "variant": [],
+        "requiredCondition": {
+          "Temperature": 22.5,
+          "Hudimity": 70.0,
+          "Illumination": 25000.0,
+          "CarbonDioxide": 700.0,
+          "PH": 6.0
+        }
+      },
+      {
+        "id": 0,
+        "amount": 0,
+        "buyPrice": 500,
+        "sellPrice": 800,
+        "name": "西瓜",
+        "latin": "Citrullus lanatus",
+        "variantPotential": 0.0,
+        "seedProductionRate": 0.0,
+        "plantTimeJS": 0,
+        "growthCycleJS": 0,
+        "plantTime": "0001-01-01T00:00:00",
+        "growthCycle": "5.00:00:00",
+        "variant": [],
+        "requiredCondition": {
+          "Temperature": 27.0,
+          "Hudimity": 60.0,
+          "Illumination": 70000.0,
+          "CarbonDioxide": 350.0,
+          "PH": 6.0
+        }
+      },
+      {
+        "id": 0,
+        "amount": 0,
+        "buyPrice": 100,
+        "sellPrice": 140,
+        "name": "防风草",
+        "latin": "Pastinaca sativa",
+        "variantPotential": 0.0,
+        "seedProductionRate": 0.0,
+        "plantTimeJS": 0,
+        "growthCycleJS": 0,
+        "plantTime": "0001-01-01T00:00:00",
+        "growthCycle": "1.00:00:00",
+        "variant": [],
+        "requiredCondition": {
+          "Temperature": 20.0,
+          "Hudimity": 70.0,
+          "Illumination": 20000.0,
+          "CarbonDioxide": 350.0,
+          "PH": 6.5
+        }
+      }
+    ],
+    "fruits": null
+  },
+  "chunks": [
+    {
+      "level": 0,
+      "isLocked": false,
+      "cropOn": null
+    },
+    {
+      "level": 0,
+      "isLocked": false,
+      "cropOn": null
+    },
+    {
+      "level": 0,
+      "isLocked": false,
+      "cropOn": null
+    },
+    {
+      "level": 0,
+      "isLocked": true,
+      "cropOn": null
+    },
+    {
+      "level": 0,
+      "isLocked": true,
+      "cropOn": null
+    },
+    {
+      "level": 0,
+      "isLocked": true,
+      "cropOn": null
+    },
+    {
+      "level": 0,
+      "isLocked": true,
+      "cropOn": null
+    },
+    {
+      "level": 0,
+      "isLocked": true,
+      "cropOn": null
+    },
+    {
+      "level": 0,
+      "isLocked": true,
+      "cropOn": null
+    }
+  ],
+  "modulesJS": [],
+  "modules": {
+    "Temperature": {
+      "value": 38.45,
+      "conditionType": 0
+    },
+    "Illumination": {
+      "value": -1.0,
+      "conditionType": 2
+    }
+  }
+}

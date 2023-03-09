@@ -1,11 +1,11 @@
-export var ModuleType;
-(function (ModuleType) {
-    ModuleType[ModuleType["Temperature"] = 0] = "Temperature";
-    ModuleType[ModuleType["Hudimity"] = 1] = "Hudimity";
-    ModuleType[ModuleType["Illumination"] = 2] = "Illumination";
-    ModuleType[ModuleType["CarbonDioxide"] = 3] = "CarbonDioxide";
-    ModuleType[ModuleType["PH"] = 4] = "PH";
-})(ModuleType || (ModuleType = {}));
+export var ConditionType;
+(function (ConditionType) {
+    ConditionType[ConditionType["Temperature"] = 0] = "Temperature";
+    ConditionType[ConditionType["Hudimity"] = 1] = "Hudimity";
+    ConditionType[ConditionType["Illumination"] = 2] = "Illumination";
+    ConditionType[ConditionType["CarbonDioxide"] = 3] = "CarbonDioxide";
+    ConditionType[ConditionType["PH"] = 4] = "PH";
+})(ConditionType || (ConditionType = {}));
 export var InformationType;
 (function (InformationType) {
     InformationType[InformationType["ETCC_DashBoard"] = 0] = "ETCC_DashBoard";
@@ -21,6 +21,9 @@ export var OperationType;
     OperationType[OperationType["ETCC_PlantSeed"] = 1] = "ETCC_PlantSeed";
     OperationType[OperationType["ETCC_Harvest"] = 2] = "ETCC_Harvest";
     OperationType[OperationType["ETCC_SellFruit"] = 3] = "ETCC_SellFruit";
+    OperationType[OperationType["ETCC_BuyChunk"] = 4] = "ETCC_BuyChunk";
+    OperationType[OperationType["ETCC_BuyModule"] = 5] = "ETCC_BuyModule";
+    OperationType[OperationType["ETCC_ChangeModuleData"] = 6] = "ETCC_ChangeModuleData";
 })(OperationType || (OperationType = {}));
 const cropToIcon = {};
 cropToIcon['防风草'] = '&#xe602;';

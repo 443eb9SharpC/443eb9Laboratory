@@ -1,6 +1,6 @@
 ﻿namespace _443eb9Laboratory.DataModels.ETCC;
 
-public enum ModuleType
+public enum ConditionType
 {
     Temperature,
     Hudimity,

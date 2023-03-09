@@ -7,6 +7,7 @@ let seedContainer = document.querySelector('.seed-container ul');
 let fruitContainer = document.querySelector('.fruit-container ul');
 let seedPage = document.querySelector('.seed-container');
 let fruitPage = document.querySelector('.fruit-container');
+fruitPage.style.display = 'none';
 connection.invoke('ETCC_SendInformation', InformationType.ETCC_Storage, connection.connectionId, ipAddress);
 export function getStorageInfo(json) {
     chamberStorage = JSON.parse(json);

@@ -2,6 +2,6 @@
 
 public class Module
 {
-    public int value;
-    public ModuleType moduleType;
+    public float value;
+    public ConditionType conditionType;
 }

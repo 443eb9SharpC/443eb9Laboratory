@@ -1,5 +1,4 @@
-﻿using _443eb9Laboratory.Database;
-using _443eb9Laboratory.Utils;
+﻿using _443eb9Laboratory.Utils;
 
 namespace _443eb9Laboratory.DataModels.ETCC;
 
@@ -14,10 +13,11 @@ public class Chamber
     public string description;
     public ChamberStorage chamberStorage;
     public List<Chunk> chunks;
-    public List<Module> modules;
+    public List<Module> modulesJS;
+    public Dictionary<ConditionType, Module> modules;
     public void SaveChamber()
     {
-        IOOperator.ToJson($"./Data/Chambers/{owner}/chamber.json", this);
+        IOOperator.ToJson($"./Data/UserData/{owner}/Chamber.json", this);
     }
 
     public void AddSeedToStorage(Crop seed)
@@ -91,20 +91,20 @@ public class Chamber
         SaveChamber();
     }
 
-    public static Chamber GetChamber(string ipAddress)
+    public static Chamber GetChamber(string username)
     {
-        return IOOperator.ReadJson<Chamber>($"./Data/Chambers/{ClientDatabase.GetUsername(ipAddress)}/chamber.json");
+        return IOOperator.ReadJson<Chamber>($"./Data/UserData/{username}/Chamber.json");
     }
 
-    public static void AddChamber(string chamberName, string chamberDescription, string ipAddress)
+    public static void AddChamber(string chamberName, string chamberDescription, string username)
     {
         Chamber newChamber = new Chamber
         {
-            id = Directory.GetDirectories($"./Data/Chambers").Length,
+            id = Directory.GetDirectories($"./Data/UserData").Length,
             level = 0,
             assets = 1000,
             cropsTotalPlanted = 0,
-            owner = ClientDatabase.GetUsername(ipAddress),
+            owner = username,
             name = chamberName,
             description = chamberDescription,
             chamberStorage = new ChamberStorage { seeds = new List<Crop>() },
@@ -113,21 +113,21 @@ public class Chamber
                 new Chunk(),
                 new Chunk(),
                 new Chunk(),
-                new Chunk(){ isLocked = true },
-                new Chunk(){ isLocked = true },
-                new Chunk(){ isLocked = true },
-                new Chunk(){ isLocked = true },
-                new Chunk(){ isLocked = true },
-                new Chunk(){ isLocked = true }
+                new Chunk() { isLocked = true },
+                new Chunk() { isLocked = true },
+                new Chunk() { isLocked = true },
+                new Chunk() { isLocked = true },
+                new Chunk() { isLocked = true },
+                new Chunk() { isLocked = true }
             },
-            modules = new List<Module>()
+            modulesJS = new List<Module>(),
+            modules = new Dictionary<ConditionType, Module>(),
         };
-        IOOperator.ToJson($"./Data/Chambers/{ClientDatabase.GetUsername(ipAddress)}/chamber.json", newChamber);
+        IOOperator.ToJson($"./Data/UserData/{username}/Chamber.json", newChamber);
     }
 
-    public static bool IsUserOwnedChamber(string ipAddress)
+    public static bool IsUserOwnedChamber(string username)
     {
-        string username = ClientDatabase.GetUsername(ipAddress);
-        return Directory.Exists($"./Data/Chambers/{username}");
+        return File.Exists($"./Data/UserData/{username}/Chamber.json");
     }
 }

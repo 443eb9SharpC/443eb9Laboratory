@@ -1,4 +1,4 @@
-export enum ModuleType {
+export enum ConditionType {
     Temperature,
     Hudimity,
     Illumination,
@@ -19,7 +19,10 @@ export enum OperationType {
     ETCC_BuySeed,
     ETCC_PlantSeed,
     ETCC_Harvest,
-    ETCC_SellFruit
+    ETCC_SellFruit,
+    ETCC_BuyChunk,
+    ETCC_BuyModule,
+    ETCC_ChangeModuleData
 }
 
 export interface Chamber {
@@ -30,12 +33,12 @@ export interface Chamber {
     owner: string
     name: string
     description: string
-    modules: Module[]
+    modulesJS: Module[]
 }
 
 export interface Module {
     value: number
-    moduleType: ModuleType
+    conditionType: ConditionType
 }
 
 export interface Crop {

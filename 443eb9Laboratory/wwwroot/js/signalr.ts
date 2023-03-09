@@ -7,11 +7,11 @@ const connection = new signalR.HubConnectionBuilder()
 
 let httpRequest = new XMLHttpRequest()
 let ipAddress: string
-httpRequest.open('GET', 'https://api.ipify.org/', true)
+httpRequest.open('GET', 'http://ip-api.com/json', true)
 httpRequest.send()
 httpRequest.onreadystatechange = function () {
     if (httpRequest.readyState == 4 && httpRequest.status == 200) {
-        ipAddress = httpRequest.responseText
+        ipAddress = JSON.parse(httpRequest.responseText).query
     }
 }
 

@@ -16,7 +16,7 @@ public class WebHub : Hub
     {
         Console.WriteLine($"[{DateTime.Now}] {Clients.Caller} Connected");
         Thread.Sleep(1000);
-        await Clients.Caller.SendAsync("createMessage", "连接成功", "成功连接到服务端");
+        await ClientManager.SendMessage(Clients.Caller, "连接成功", "成功连接到服务端");
     }
 
     public override Task OnDisconnectedAsync(Exception? exception)
@@ -29,20 +29,20 @@ public class WebHub : Hub
         if (!UserDatabase.HasUser(username))
         {
             Console.WriteLine(username);
-            await Clients.Client(connectionId).SendAsync("createErrorMessage", "无效参数", "用户不存在");
+            await ClientManager.SendErrorMessage(Clients.Client(connectionId), "无效参数", "用户不存在");
             return;
         }
         if (UserDatabase.GetUser(username).password != MathExt.MD5Encrypt64(password))
         {
-            await Clients.Client(connectionId).SendAsync("createErrorMessage", "无效参数", "密码错误");
+            await ClientManager.SendErrorMessage(Clients.Client(connectionId), "无效参数", "密码错误");
             return;
         }
 
         Console.WriteLine($"[{DateTime.Now}][{ipAddress}][{username}] Logged in");
-        ClientDatabase.AddKeyValuePair(ipAddress, username);
+        ClientManager.AddKeyValuePair(ipAddress, username);
 
         string page;
-        if (Chamber.IsUserOwnedChamber(ipAddress))
+        if (Chamber.IsUserOwnedChamber(username))
         {
             page = "../Pages/ETCC.html";
         }
@@ -76,16 +76,16 @@ public class WebHub : Hub
     {
         if (chamberDescription.Length > 22)
         {
-            await Clients.Client(connectionId).SendAsync("createErrorMessage", "无效参数", "培养仓描述超过22个字");
+            await ClientManager.SendErrorMessage(Clients.Client(connectionId), "无效参数", "培养仓描述超过22个字");
             return;
         }
         if (chamberName.Length > 6)
         {
-            await Clients.Client(connectionId).SendAsync("createErrorMessage", "无效参数", "培养仓名字超过6个字");
+            await ClientManager.SendErrorMessage(Clients.Client(connectionId), "无效参数", "培养仓名字超过6个字");
             return;
         }
 
-        Chamber.AddChamber(chamberName, chamberDescription, ipAddress);
+        Chamber.AddChamber(chamberName, chamberDescription, ClientManager.GetUsername(ipAddress));
         await Clients.Client(connectionId).SendAsync("onChamberCreated");
     }
 
@@ -105,7 +105,7 @@ public class WebHub : Hub
         }
         catch
         {
-            await Clients.Client(connectionId).SendAsync("createErrorMessage", "无效参数", "邮箱格式错误");
+            await ClientManager.SendErrorMessage(Clients.Client(connectionId), "无效参数", "邮箱格式错误");
             return;
         }
         SmtpClient smtpClient = new SmtpClient("smtp.qq.com", 25)
@@ -118,44 +118,75 @@ public class WebHub : Hub
 
     public async void ETCC_SendInformation(InformationType informationType, string connectionId, string ipAddress)
     {
+        string username;
+        try
+        {
+            username = ClientManager.GetUsername(ipAddress);
+        }
+        catch
+        {
+            await ClientManager.SendErrorMessage(Clients.Client(connectionId), "异常", "未获取到当前IP绑定的用户，请检查你的VPN连接或重新登录");
+            return;
+        }
+
         switch (informationType)
         {
             case InformationType.ETCC_DashBoard:
-                await ETCC_InformationIndexer.SendDashBoardInfo(ipAddress, Clients.Client(connectionId));
+                await ETCC_InfoSender.SendDashBoardInfo(username, Clients.Client(connectionId));
                 break;
             case InformationType.ETCC_Chunks:
-                await ETCC_InformationIndexer.SendChunksInfo(ipAddress, Clients.Client(connectionId));
+                await ETCC_InfoSender.SendChunksInfo(username, Clients.Client(connectionId));
                 break;
             case InformationType.ETCC_Asset:
-                await ETCC_InformationIndexer.SendAssetInfo(ipAddress, Clients.Client(connectionId));
+                await ETCC_InfoSender.SendAssetInfo(username, Clients.Client(connectionId));
                 break;
             case InformationType.ETCC_SeedStore:
-                await ETCC_InformationIndexer.SendSeedStoreInfo(Clients.Client(connectionId));
+                await ETCC_InfoSender.SendSeedStoreInfo(Clients.Client(connectionId));
                 break;
             case InformationType.ETCC_Storage:
-                await ETCC_InformationIndexer.SendStorageInfo(ipAddress, Clients.Client(connectionId));
+                await ETCC_InfoSender.SendStorageInfo(username, Clients.Client(connectionId));
                 break;
             case InformationType.ETCC_SeedMarket:
-                await ETCC_InformationIndexer.SendMarketInfo(Clients.Client(connectionId));
+                await ETCC_InfoSender.SendMarketInfo(Clients.Client(connectionId));
                 break;
         }
     }
 
     public async Task ETCC_ExecuteOperation(OperationType operationType, string connectionId, string ipAddress, string[] args)
     {
+        string username;
+        try
+        {
+            username = ClientManager.GetUsername(ipAddress);
+        }
+        catch
+        {
+            await ClientManager.SendErrorMessage(Clients.Client(connectionId), "异常", "未获取到当前IP绑定的用户，请检查你的VPN连接或重新登录");
+            return;
+        }
+
         switch (operationType)
         {
             case OperationType.ETCC_BuySeed:
-                await ETCC_OperationIndexer.ExecuteBuySeed(ipAddress, Clients.Client(connectionId), args[0]);
+                await ETCC_OperExecuter.ExecuteBuySeed(username, Clients.Client(connectionId), args[0]);
                 break;
             case OperationType.ETCC_PlantSeed:
-                await ETCC_OperationIndexer.ExecutePlantSeed(ipAddress, Clients.Client(connectionId), args[0], args[1]);
+                await ETCC_OperExecuter.ExecutePlantSeed(username, Clients.Client(connectionId), args[0], args[1]);
                 break;
             case OperationType.ETCC_Harvest:
-                await ETCC_OperationIndexer.ExecuteHarvest(ipAddress, Clients.Client(connectionId), args[0]);
+                await ETCC_OperExecuter.ExecuteHarvest(username, Clients.Client(connectionId), args[0]);
                 break;
             case OperationType.ETCC_SellFruit:
-                await ETCC_OperationIndexer.ExecuteSellFruit(ipAddress, Clients.Client(connectionId), args[0]);
+                await ETCC_OperExecuter.ExecuteSellFruit(username, Clients.Client(connectionId), args[0]);
+                break;
+            case OperationType.ETCC_BuyChunk:
+                await ETCC_OperExecuter.ExecuteBuyChunk(username, Clients.Client(connectionId), args[0]);
+                break;
+            case OperationType.ETCC_BuyModule:
+                await ETCC_OperExecuter.ExecuteBuyModule(username, Clients.Client(connectionId), args[0]);
+                break;
+            case OperationType.ETCC_ChangeModuleData:
+                await ETCC_OperExecuter.ExecuteChangeModuleData(username, Clients.Client(connectionId), args[0], args[1]);
                 break;
         }
     }
