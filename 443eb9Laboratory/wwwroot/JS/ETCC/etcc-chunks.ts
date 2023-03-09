@@ -28,7 +28,7 @@ function renderInfo() {
             timeRemains[i].innerText = ''
             continue
         }
-        if (chunks[i].cropOn == null) {
+        if (chunks[i].plantOn == null) {
             chunkIcons[i].innerHTML = '&#xe70a;'
             chunkIds[i].innerText = ''
             chunkNames[i].innerText = ''
@@ -36,9 +36,9 @@ function renderInfo() {
             timeRemains[i].innerText = ''
             continue
         }
-        chunkIcons[i].innerHTML = cropToIcon[chunks[i].cropOn.name]
-        chunkIds[i].innerText = '#' + chunks[i].cropOn.id
-        chunkNames[i].innerText = chunks[i].cropOn.name
+        chunkIcons[i].innerHTML = cropToIcon[chunks[i].plantOn.name]
+        chunkIds[i].innerText = '#' + chunks[i].plantOn.id
+        chunkNames[i].innerText = chunks[i].plantOn.name
         timeRemainTitles[i].innerText = '剩余成熟时间'
     }
     updateTime()
@@ -48,9 +48,9 @@ async function updateTime() {
     while (true) {
         for (let i = 0; i < chunks.length; i++) {
             if (chunks[i].isLocked) continue
-            if (chunks[i].cropOn == null) continue
+            if (chunks[i].plantOn == null) continue
 
-            const remainingTimeMs = chunks[i].cropOn.growthCycleJS - (Date.now() - chunks[i].cropOn.plantTimeJS);
+            const remainingTimeMs = chunks[i].plantOn.actualGrowthCycleJS - (Date.now() - chunks[i].plantOn.plantTimeJS);
             const remainingTime = new Date(remainingTimeMs);
             const remainingDays = Math.floor(remainingTimeMs / (1000 * 60 * 60 * 24));
             const remainingHours = remainingTime.getUTCHours();
@@ -79,7 +79,7 @@ function harvest(event: MouseEvent) {
     target = target.parentElement
     let chunkIndex = greekToNumber[target.classList[0]]
     if (chunks[chunkIndex].isLocked) return
-    if (chunks[chunkIndex].cropOn == null) return
+    if (chunks[chunkIndex].plantOn == null) return
     
     connection.send('ETCC_ExecuteOperation', OperationType.ETCC_Harvest, connection.connectionId, ipAddress, [chunkIndex.toString()])
 }

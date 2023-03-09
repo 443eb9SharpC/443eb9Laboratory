@@ -1,7 +1,9 @@
-﻿namespace _443eb9Laboratory.DataModels.ETCC;
+﻿using _443eb9Laboratory.DataModels.ETCC.SubModels;
+
+namespace _443eb9Laboratory.DataModels.ETCC;
 
 public class ChamberStorage
 {
-    public List<Crop> seeds;
-    public List<Crop> fruits;
+    public List<Seed> seeds;
+    public List<Fruit> fruits;
 }

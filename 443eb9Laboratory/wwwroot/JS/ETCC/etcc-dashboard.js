@@ -1,6 +1,7 @@
 import { connection, ipAddress } from "../signalr.js";
 import { ConditionType, InformationType, OperationType } from "./etcc-datamodels.js";
 connection.on('getDashBoardInfo', getDashBoardInfo);
+connection.on('getModuleValueRangeInfo', getModuleValueRangeInfo);
 let isFirstLoad = true;
 let chamber;
 let name = document.querySelector('.dashboard .status-box .name');
@@ -8,8 +9,12 @@ let id = document.querySelector('.dashboard .status-box .id');
 let owner = document.querySelector('.dashboard .status-box .owner');
 let description = document.querySelector('.dashboard .status-box .description');
 let level = document.querySelector('.dashboard .status-box .level');
+let moduleValueRange = {};
 let moduleData = document.querySelectorAll('.dashboard .module-box .module-data');
 connection.invoke('ETCC_SendInformation', InformationType.ETCC_DashBoard, connection.connectionId, ipAddress);
+export function getModuleValueRangeInfo(json) {
+    moduleValueRange = JSON.parse(json);
+}
 export function getDashBoardInfo(json) {
     chamber = JSON.parse(json);
     renderInfo();
@@ -98,13 +103,7 @@ function openSlider(event) {
             selectedConditionType = ConditionType.PH;
             break;
     }
-    let moduleEnabled = false;
-    chamber.modulesJS.forEach(mod => {
-        if (mod.conditionType == selectedConditionType) {
-            moduleEnabled = true;
-        }
-    });
-    if (!moduleEnabled) {
+    if (chamber.unlockedModuleTypes.findIndex(function (value) { value == selectedConditionType; }) == -1) {
         valueSlider.style.display = 'none';
         onDrag = false;
         return;
@@ -119,24 +118,24 @@ function openSlider(event) {
     }
     switch (selectedConditionType) {
         case ConditionType.Temperature:
-            maxValue = 50;
-            minValue = 5;
+            minValue = moduleValueRange['Temperature'][0];
+            maxValue = moduleValueRange['Temperature'][1];
             break;
         case ConditionType.Hudimity:
-            maxValue = 95;
-            minValue = 20;
+            minValue = moduleValueRange['Hudimity'][0];
+            maxValue = moduleValueRange['Hudimity'][1];
             break;
         case ConditionType.Illumination:
-            maxValue = 300000;
-            minValue = 0;
+            minValue = moduleValueRange['Illumination'][0];
+            maxValue = moduleValueRange['Illumination'][1];
             break;
         case ConditionType.CarbonDioxide:
-            maxValue = 1000;
-            minValue = 100;
+            minValue = moduleValueRange['CarbonDioxide'][0];
+            maxValue = moduleValueRange['CarbonDioxide'][1];
             break;
         case ConditionType.PH:
-            maxValue = 12;
-            minValue = 2;
+            minValue = moduleValueRange['PH'][0];
+            maxValue = moduleValueRange['PH'][1];
             break;
     }
     originalValue = parseFloat(moduleData[selectedModuleId].innerText);

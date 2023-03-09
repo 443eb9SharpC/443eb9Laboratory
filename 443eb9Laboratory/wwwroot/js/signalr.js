@@ -5,11 +5,11 @@ const connection = new signalR.HubConnectionBuilder()
     .build();
 let httpRequest = new XMLHttpRequest();
 let ipAddress;
-httpRequest.open('GET', 'http://ip-api.com/json', true);
+httpRequest.open('GET', 'https://ip.useragentinfo.com/json', true);
 httpRequest.send();
 httpRequest.onreadystatechange = function () {
     if (httpRequest.readyState == 4 && httpRequest.status == 200) {
-        ipAddress = JSON.parse(httpRequest.responseText).query;
+        ipAddress = JSON.parse(httpRequest.responseText).ip;
     }
 };
 await connection.start();

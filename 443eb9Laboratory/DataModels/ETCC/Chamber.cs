@@ -1,4 +1,5 @@
-﻿using _443eb9Laboratory.Utils;
+﻿using _443eb9Laboratory.DataModels.ETCC.SubModels;
+using _443eb9Laboratory.Utils;
 
 namespace _443eb9Laboratory.DataModels.ETCC;
 
@@ -14,13 +15,15 @@ public class Chamber
     public ChamberStorage chamberStorage;
     public List<Chunk> chunks;
     public List<Module> modulesJS;
+    public List<ConditionType> unlockedModuleTypes;
     public Dictionary<ConditionType, Module> modules;
+
     public void SaveChamber()
     {
         IOOperator.ToJson($"./Data/UserData/{owner}/Chamber.json", this);
     }
 
-    public void AddSeedToStorage(Crop seed)
+    public void AddSeedToStorage(Seed seed)
     {
         int index = chamberStorage.seeds.FindIndex(seedInStorage => seedInStorage.name == seed.name);
         if (index == -1)
@@ -48,7 +51,7 @@ public class Chamber
         SaveChamber();
     }
 
-    public void AddFruitToStorage(Crop fruit)
+    public void AddFruitToStorage(Fruit fruit)
     {
         int index = chamberStorage.fruits.FindIndex(fruitInStorage => fruitInStorage.name == fruit.name);
         if (index == -1)
@@ -107,7 +110,11 @@ public class Chamber
             owner = username,
             name = chamberName,
             description = chamberDescription,
-            chamberStorage = new ChamberStorage { seeds = new List<Crop>() },
+            chamberStorage = new ChamberStorage
+            {
+                seeds = new List<Seed>(),
+                fruits = new List<Fruit>()
+            },
             chunks = new List<Chunk>()
             {
                 new Chunk(),
@@ -120,9 +127,17 @@ public class Chamber
                 new Chunk() { isLocked = true },
                 new Chunk() { isLocked = true }
             },
+            unlockedModuleTypes = new List<ConditionType>(),
             modulesJS = new List<Module>(),
-            modules = new Dictionary<ConditionType, Module>(),
+            modules = new Dictionary<ConditionType, Module>()
         };
+
+        newChamber.modules[ConditionType.Temperature] = new Module() { conditionType = ConditionType.Temperature, value = 25 };
+        newChamber.modules[ConditionType.Hudimity] = new Module { conditionType = ConditionType.Hudimity, value = 70 };
+        newChamber.modules[ConditionType.Illumination] = new Module { conditionType = ConditionType.Illumination, value = 15000 };
+        newChamber.modules[ConditionType.CarbonDioxide] = new Module { conditionType = ConditionType.CarbonDioxide, value = 15000 }; ;
+        newChamber.modules[ConditionType.PH] = new Module { conditionType = ConditionType.PH, value = 7 };
+
         IOOperator.ToJson($"./Data/UserData/{username}/Chamber.json", newChamber);
     }
 

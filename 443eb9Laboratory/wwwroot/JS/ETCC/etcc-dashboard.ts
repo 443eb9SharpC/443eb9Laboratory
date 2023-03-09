@@ -3,6 +3,7 @@ import { ConditionType, InformationType, OperationType } from "./etcc-datamodels
 import { Chamber } from "./etcc-datamodels.js";
 
 connection.on('getDashBoardInfo', getDashBoardInfo)
+connection.on('getModuleValueRangeInfo', getModuleValueRangeInfo)
 
 let isFirstLoad = true
 
@@ -14,9 +15,15 @@ let owner = document.querySelector('.dashboard .status-box .owner') as HTMLTitle
 let description = document.querySelector('.dashboard .status-box .description') as HTMLTitleElement
 let level = document.querySelector('.dashboard .status-box .level') as HTMLTitleElement
 
+let moduleValueRange: { [key: string]: number[] } = {}
+
 let moduleData = document.querySelectorAll('.dashboard .module-box .module-data') as NodeListOf<HTMLElement>
 
 connection.invoke('ETCC_SendInformation', InformationType.ETCC_DashBoard, connection.connectionId, ipAddress)
+
+export function getModuleValueRangeInfo(json: string) {
+    moduleValueRange = JSON.parse(json)
+}
 
 export function getDashBoardInfo(json: string) {
     chamber = JSON.parse(json)
@@ -118,13 +125,7 @@ function openSlider(event: MouseEvent) {
             break
     }
 
-    let moduleEnabled = false
-    chamber.modulesJS.forEach(mod => {
-        if (mod.conditionType == selectedConditionType) {
-            moduleEnabled = true
-        }
-    })
-    if (!moduleEnabled) {
+    if (chamber.unlockedModuleTypes.findIndex(function (value) { value == selectedConditionType }) == -1) {
         valueSlider.style.display = 'none'
         onDrag = false
         return
@@ -141,24 +142,24 @@ function openSlider(event: MouseEvent) {
 
     switch (selectedConditionType) {
         case ConditionType.Temperature:
-            maxValue = 50
-            minValue = 5
+            minValue = moduleValueRange['Temperature'][0]
+            maxValue = moduleValueRange['Temperature'][1]
             break
         case ConditionType.Hudimity:
-            maxValue = 95
-            minValue = 20
+            minValue = moduleValueRange['Hudimity'][0]
+            maxValue = moduleValueRange['Hudimity'][1]
             break
         case ConditionType.Illumination:
-            maxValue = 300000
-            minValue = 0
+            minValue = moduleValueRange['Illumination'][0]
+            maxValue = moduleValueRange['Illumination'][1]
             break
         case ConditionType.CarbonDioxide:
-            maxValue = 1000
-            minValue = 100
+            minValue = moduleValueRange['CarbonDioxide'][0]
+            maxValue = moduleValueRange['CarbonDioxide'][1]
             break
         case ConditionType.PH:
-            maxValue = 12
-            minValue = 2
+            minValue = moduleValueRange['PH'][0]
+            maxValue = moduleValueRange['PH'][1]
             break
     }
 

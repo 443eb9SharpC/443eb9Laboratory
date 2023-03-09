@@ -7,8 +7,15 @@ namespace _443eb9Laboratory.Utils;
 
 public class ETCC_InfoSender
 {
+    public async static Task SendModuleValueRangeInfo(IClientProxy client)
+    {
+        string json = JsonConvert.SerializeObject(IOOperator.ReadJson<Dictionary<ConditionType, float[]>>("./Data/ModuleDataRange.json"));
+        await client.SendAsync("getModuleValueRangeInfo", json);
+    }
+
     public async static Task SendDashBoardInfo(string username, IClientProxy client)
     {
+        await SendModuleValueRangeInfo(client);
         Chamber chamber = Chamber.GetChamber(username);
 
         foreach (ConditionType conditionType in chamber.modules.Keys)
@@ -28,8 +35,19 @@ public class ETCC_InfoSender
 
     public async static Task SendChunksInfo(string username, IClientProxy client)
     {
-        List<Chunk> chunks = Chamber.GetChamber(username).chunks;
-        await client.SendAsync("getChunksInfo", JsonConvert.SerializeObject(chunks));
+        Chamber chamber = Chamber.GetChamber(username);
+
+        Dictionary<ConditionType, float> moduleDatas = new Dictionary<ConditionType, float>();
+        foreach (ConditionType conditionType in chamber.modules.Keys)
+        {
+            moduleDatas[conditionType] = chamber.modules[conditionType].value;
+        }
+
+        for (int i = 0; i < chamber.chunks.Count; i++)
+        {
+            chamber.chunks[i].plantOn = Crop.GetActualGrowthCycle(chamber.chunks[i].plantOn, moduleDatas);
+        }
+        await client.SendAsync("getChunksInfo", JsonConvert.SerializeObject(chamber.chunks));
     }
 
     public async static Task SendAssetInfo(string username, IClientProxy client)
@@ -39,7 +57,7 @@ public class ETCC_InfoSender
 
     public async static Task SendSeedStoreInfo(IClientProxy client)
     {
-        await client.SendAsync("getSeedStoreInfo", JsonConvert.SerializeObject(CropDatabase.crops));
+        await client.SendAsync("getSeedStoreInfo", JsonConvert.SerializeObject(Crop.crops));
     }
 
     public async static Task SendStorageInfo(string username, IClientProxy client)
@@ -50,6 +68,6 @@ public class ETCC_InfoSender
 
     public async static Task SendMarketInfo(IClientProxy client)
     {
-        await client.SendAsync("getFruitMarketInfo", JsonConvert.SerializeObject(CropDatabase.crops));
+        await client.SendAsync("getFruitMarketInfo", JsonConvert.SerializeObject(Crop.crops));
     }
 }

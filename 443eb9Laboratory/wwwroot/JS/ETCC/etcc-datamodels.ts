@@ -33,6 +33,7 @@ export interface Chamber {
     owner: string
     name: string
     description: string
+    unlockedModuleTypes: ConditionType[]
     modulesJS: Module[]
 }
 
@@ -49,13 +50,13 @@ export interface Crop {
     buyPrice: number
     sellPrice: number
     plantTimeJS: number
-    growthCycleJS: number
+    actualGrowthCycleJS: number
 }
 
 export interface Chunk {
     level: number
     isLocked: boolean
-    cropOn: Crop
+    plantOn: Crop
 }
 
 export interface ChamberStorage {

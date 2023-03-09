@@ -1,138 +1,84 @@
 {
-  "id": 0,
+  "id": 1,
   "level": 0,
-  "assets": 998900,
+  "assets": 100000,
   "cropsTotalPlanted": 0,
   "owner": "443eb9",
   "name": "测试",
   "description": "测试",
   "chamberStorage": {
-    "seeds": [
-      {
-        "id": 0,
-        "amount": 1,
-        "buyPrice": 250,
-        "sellPrice": 375,
-        "name": "草莓",
-        "latin": "Fragaria × ananassa",
-        "variantPotential": 0.0,
-        "seedProductionRate": 0.0,
-        "plantTimeJS": 0,
-        "growthCycleJS": 0,
-        "plantTime": "0001-01-01T00:00:00",
-        "growthCycle": "3.00:00:00",
-        "variant": [],
-        "requiredCondition": {
-          "Temperature": 22.5,
-          "Hudimity": 70.0,
-          "Illumination": 25000.0,
-          "CarbonDioxide": 700.0,
-          "PH": 6.0
-        }
-      },
-      {
-        "id": 0,
-        "amount": 0,
-        "buyPrice": 500,
-        "sellPrice": 800,
-        "name": "西瓜",
-        "latin": "Citrullus lanatus",
-        "variantPotential": 0.0,
-        "seedProductionRate": 0.0,
-        "plantTimeJS": 0,
-        "growthCycleJS": 0,
-        "plantTime": "0001-01-01T00:00:00",
-        "growthCycle": "5.00:00:00",
-        "variant": [],
-        "requiredCondition": {
-          "Temperature": 27.0,
-          "Hudimity": 60.0,
-          "Illumination": 70000.0,
-          "CarbonDioxide": 350.0,
-          "PH": 6.0
-        }
-      },
-      {
-        "id": 0,
-        "amount": 0,
-        "buyPrice": 100,
-        "sellPrice": 140,
-        "name": "防风草",
-        "latin": "Pastinaca sativa",
-        "variantPotential": 0.0,
-        "seedProductionRate": 0.0,
-        "plantTimeJS": 0,
-        "growthCycleJS": 0,
-        "plantTime": "0001-01-01T00:00:00",
-        "growthCycle": "1.00:00:00",
-        "variant": [],
-        "requiredCondition": {
-          "Temperature": 20.0,
-          "Hudimity": 70.0,
-          "Illumination": 20000.0,
-          "CarbonDioxide": 350.0,
-          "PH": 6.5
-        }
-      }
-    ],
-    "fruits": null
+    "seeds": [],
+    "fruits": []
   },
   "chunks": [
     {
       "level": 0,
       "isLocked": false,
-      "cropOn": null
+      "plantOn": null
     },
     {
       "level": 0,
       "isLocked": false,
-      "cropOn": null
+      "plantOn": null
     },
     {
       "level": 0,
       "isLocked": false,
-      "cropOn": null
+      "plantOn": null
     },
     {
       "level": 0,
       "isLocked": true,
-      "cropOn": null
+      "plantOn": null
     },
     {
       "level": 0,
       "isLocked": true,
-      "cropOn": null
+      "plantOn": null
     },
     {
       "level": 0,
       "isLocked": true,
-      "cropOn": null
+      "plantOn": null
     },
     {
       "level": 0,
       "isLocked": true,
-      "cropOn": null
+      "plantOn": null
     },
     {
       "level": 0,
       "isLocked": true,
-      "cropOn": null
+      "plantOn": null
     },
     {
       "level": 0,
       "isLocked": true,
-      "cropOn": null
+      "plantOn": null
     }
   ],
   "modulesJS": [],
+  "unlockedModuleTypes": [],
   "modules": {
     "Temperature": {
-      "value": 38.45,
+      "value": 25.0,
       "conditionType": 0
     },
+    "Hudimity": {
+      "value": 70.0,
+      "conditionType": 1
+    },
     "Illumination": {
-      "value": -1.0,
+      "value": 15000.0,
       "conditionType": 2
+    },
+    "CarbonDioxide": {
+      "value": 15000.0,
+      "conditionType": 3
+    },
+    "PH": {
+      "value": 7.0,
+      "conditionType": 4
     }
   }
 }

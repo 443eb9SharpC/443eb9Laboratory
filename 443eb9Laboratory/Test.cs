@@ -9,28 +9,14 @@
 //{
 //    public static void Tst()
 //    {
-//        Crop crop = new Crop()
-//        {
-//            id = 0,
-//            amount = 1,
-//            buyPrice = 100,
-//            sellPrice = 100,
-//            name = "防风草",
-//            latin = "aaa",
-//            variantPotential = 0,
-//            seedProductionRate = 0,
-//            plantTimeJS = 0,
-//            growthCycleJS = 0,
-//            plantTime = DateTime.MinValue,
-//            growthCycle = TimeSpan.Zero,
-//            variant = new List<VariantType>(),
-//            requiredCondition = new Dictionary<ConditionType, float>()
-//        };
-//        crop.requiredCondition[ConditionType.Temperature] = 10;
-//        crop.requiredCondition[ConditionType.Hudimity] = 10;
-//        crop.requiredCondition[ConditionType.Illumination] = 10;
-//        crop.requiredCondition[ConditionType.CarbonDioxide] = 10;
-//        crop.requiredCondition[ConditionType.PH] = 10;
-//        IOOperator.ToJson("./Data/Crops.json", crop);
+//        Dictionary<ConditionType, float[]> dic = new Dictionary<ConditionType, float[]>();
+
+//        dic[ConditionType.Temperature] = new float[] { 50, 5 };
+//        dic[ConditionType.Hudimity] = new float[] { 95, 20 };
+//        dic[ConditionType.Illumination] = new float[] { 50000, 0 };
+//        dic[ConditionType.CarbonDioxide] = new float[] { 1000, 100 };
+//        dic[ConditionType.PH] = new float[] { 12, 2 };
+
+//        IOOperator.ToJson("./Data/ModuleDataRange.json", dic);
 //    }
 //}
