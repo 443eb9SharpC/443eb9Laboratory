@@ -7,6 +7,8 @@ namespace _443eb9Laboratory.Utils;
 
 public class ETCC_OperExecuter
 {
+    public static Random random = new Random();
+
     public async static Task ExecuteBuySeed(string username, IClientProxy client, string seedName)
     {
         Chamber chamber = Chamber.GetChamber(username);
@@ -29,10 +31,15 @@ public class ETCC_OperExecuter
         }
     }
 
-    public async static Task ExecutePlantSeed(string username, IClientProxy client, string seedName, string chunkIdStr)
+    public async static Task ExecutePlantSeed(string username, IClientProxy client, string seedIdStr, string chunkIdStr)
     {
         Chamber chamber = Chamber.GetChamber(username);
         int chunkId = Convert.ToInt32(chunkIdStr);
+        int seedId = Convert.ToInt32(seedIdStr);
+
+        if (seedId > chamber.chamberStorage.seeds.Count - 1 || seedId < 0) return;
+        Seed targetSeed = chamber.chamberStorage.seeds[seedId];
+        chamber.RemoveSeedFromStorage(targetSeed);
 
         if (chamber.chunks[chunkId].plantOn != null)
         {
@@ -45,20 +52,36 @@ public class ETCC_OperExecuter
             return;
         }
 
-        seedName = seedName.Substring(0, seedName.Length - 2);
-
-        chamber.chunks[chunkId].plantOn = Crop.GetPlant(seedName);
+        chamber.chunks[chunkId].plantOn = Crop.GetPlant(targetSeed.name);
         chamber.chunks[chunkId].plantOn.plantTime = DateTime.Now.ToUniversalTime();
 
         chamber.chunks[chunkId].plantOn.id = chamber.cropsTotalPlanted;
+
+        Dictionary<ConditionType, float> moduleData = new Dictionary<ConditionType, float>();
+        foreach (ConditionType types in chamber.modules.Keys)
+        {
+            moduleData[types] = chamber.modules[types].value;
+        }
+
         chamber.chunks[chunkId].plantOn.plantTimeJS = MathExt.ConvertToJSTime(chamber.chunks[chunkId].plantOn.plantTime);
         chamber.chunks[chunkId].plantOn.growthCycleJS = MathExt.ConvertToJSTime(chamber.chunks[chunkId].plantOn.growthCycle);
+
+        chamber.chunks[chunkId].plantOn.seedProductionRate = random.Next(0, 50);
+        chamber.chunks[chunkId].plantOn.variant = new List<VariantType>(targetSeed.variant);
+        if (random.Next(0, 100) < 10)
+        {
+            chamber.chunks[chunkId].plantOn.variant.Add(Crop.GenerateVariant(chamber.chunks[chunkId].plantOn.variant));
+        }
+        Crop.ApplyVariant(ref chamber.chunks[chunkId].plantOn);
+
+        chamber.chunks[chunkId].plantOn = Crop.GetActualGrowthCycle(chamber.chunks[chunkId].plantOn, moduleData);
+        chamber.chunks[chunkId].plantOn.actualGrowthCycleJS = MathExt.ConvertToJSTime(chamber.chunks[chunkId].plantOn.actualGrowthCycle);
         chamber.cropsTotalPlanted++;
 
-        chamber.RemoveSeedFromStorage(seedName);
+        chamber.SaveChamber();
         await ETCC_InfoSender.SendStorageInfo(username, client);
         await ETCC_InfoSender.SendChunksInfo(username, client);
-        await ClientManager.SendMessage(client, "种植成功", $"成功将{seedName}种子种植在区块{chunkId}上");
+        await ClientManager.SendMessage(client, "种植成功", $"成功将{targetSeed.name}种子种植在区块{chunkId}上");
     }
 
     public async static Task ExecuteHarvest(string username, IClientProxy client, string chunkIdStr)
@@ -67,6 +90,15 @@ public class ETCC_OperExecuter
         Chamber chamber = Chamber.GetChamber(username);
         Plant targetPlant = chamber.chunks[chunkId].plantOn;
         if (DateTime.Now.ToUniversalTime().Subtract(targetPlant.plantTime).TotalMilliseconds < targetPlant.actualGrowthCycle.TotalMilliseconds) return;
+
+        if (random.Next(0, 100) < 100)
+        {
+            Seed targetSeed = Crop.GetSeed(targetPlant.name);
+            targetSeed.amount = 1;
+            targetSeed.variant = new List<VariantType>(targetPlant.variant);
+            chamber.chamberStorage.seeds.Add(targetSeed);
+            await ClientManager.SendMessage(client, "额外产物", "这株作物产出了一个单位的种子");
+        }
 
         chamber.AddFruitToStorage(Crop.GetFruit(chamber.chunks[chunkId].plantOn.name));
         await ClientManager.SendMessage(client, "收获成功", $"成功将种植在区块{chunkId}上的{chamber.chunks[chunkId].plantOn.name}收获");
@@ -87,7 +119,7 @@ public class ETCC_OperExecuter
 
         Fruit fruit = Crop.GetFruit(fruitName);
         chamber.assets += fruit.sellPrice;
-        chamber.RemoveFruitFromChamber(fruitName);
+        chamber.RemoveFruitFromStorage(fruit);
         chamber.SaveChamber();
         await ETCC_InfoSender.SendAssetInfo(username, client);
         await ETCC_InfoSender.SendStorageInfo(username, client);

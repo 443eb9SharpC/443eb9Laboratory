@@ -1,7 +1,7 @@
 import * as signalR from "@microsoft/signalr";
 
 const connection = new signalR.HubConnectionBuilder()
-    .withUrl('/hub')
+    .withUrl('/hub', signalR.HttpTransportType.ServerSentEvents)
     .withAutomaticReconnect()
     .build()
 

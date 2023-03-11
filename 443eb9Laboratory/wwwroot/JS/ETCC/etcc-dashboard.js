@@ -103,7 +103,7 @@ function openSlider(event) {
             selectedConditionType = ConditionType.PH;
             break;
     }
-    if (chamber.unlockedModuleTypes.findIndex(function (value) { value == selectedConditionType; }) == -1) {
+    if (!chamber.unlockedModuleTypes.includes(selectedModuleId)) {
         valueSlider.style.display = 'none';
         onDrag = false;
         return;

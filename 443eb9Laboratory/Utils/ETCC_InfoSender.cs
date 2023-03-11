@@ -1,5 +1,4 @@
-﻿using _443eb9Laboratory.Database;
-using _443eb9Laboratory.DataModels.ETCC;
+﻿using _443eb9Laboratory.DataModels.ETCC;
 using Microsoft.AspNetCore.SignalR;
 using Newtonsoft.Json;
 
@@ -36,17 +35,6 @@ public class ETCC_InfoSender
     public async static Task SendChunksInfo(string username, IClientProxy client)
     {
         Chamber chamber = Chamber.GetChamber(username);
-
-        Dictionary<ConditionType, float> moduleDatas = new Dictionary<ConditionType, float>();
-        foreach (ConditionType conditionType in chamber.modules.Keys)
-        {
-            moduleDatas[conditionType] = chamber.modules[conditionType].value;
-        }
-
-        for (int i = 0; i < chamber.chunks.Count; i++)
-        {
-            chamber.chunks[i].plantOn = Crop.GetActualGrowthCycle(chamber.chunks[i].plantOn, moduleDatas);
-        }
         await client.SendAsync("getChunksInfo", JsonConvert.SerializeObject(chamber.chunks));
     }
 

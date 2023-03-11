@@ -5,7 +5,6 @@ public class Plant
     public int id;
     public string name;
     public string latin;
-    public float variantPotential;
     public float seedProductionRate;
     public long plantTimeJS;
     public long growthCycleJS;

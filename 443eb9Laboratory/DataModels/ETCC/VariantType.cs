@@ -10,6 +10,6 @@ public enum VariantType
     LowIlluminationPrefer,
     HighCarbonDioxidePrefer,
     LowCarbonDioxidePrefer,
-    AcidicPrefer,
-    AlkalinePrefer
+    AlkalinePrefer,
+    AcidicPrefer
 }

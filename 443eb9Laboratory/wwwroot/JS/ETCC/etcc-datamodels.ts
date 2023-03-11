@@ -12,7 +12,8 @@ export enum InformationType {
     ETCC_Asset,
     ETCC_SeedStore,
     ETCC_Storage,
-    ETCC_SeedMarket
+    ETCC_SeedMarket,
+    Login_Announcement
 }
 
 export enum OperationType {
@@ -23,6 +24,11 @@ export enum OperationType {
     ETCC_BuyChunk,
     ETCC_BuyModule,
     ETCC_ChangeModuleData
+}
+
+export interface Announcement {
+    title: string
+    content: string
 }
 
 export interface Chamber {

@@ -6,4 +6,5 @@ public class Seed
     public int buyPrice;
     public string name;
     public string latin;
+    public List<VariantType> variant;
 }

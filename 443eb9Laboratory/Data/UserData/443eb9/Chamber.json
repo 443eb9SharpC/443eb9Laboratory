@@ -1,20 +1,96 @@
 {
   "id": 1,
   "level": 0,
-  "assets": 100000,
-  "cropsTotalPlanted": 0,
+  "assets": 11590,
+  "cropsTotalPlanted": 26,
   "owner": "443eb9",
   "name": "测试",
   "description": "测试",
   "chamberStorage": {
     "seeds": [],
-    "fruits": []
+    "fruits": [
+      {
+        "amount": 6,
+        "sellPrice": 140,
+        "name": "防风草",
+        "latin": "Pastinaca sativa"
+      }
+    ]
   },
   "chunks": [
     {
       "level": 0,
       "isLocked": false,
-      "plantOn": null
+      "plantOn": {
+        "id": 8,
+        "name": "防风草",
+        "latin": "Pastinaca sativa",
+        "seedProductionRate": 2.0,
+        "plantTimeJS": 1678561143811,
+        "growthCycleJS": 86400000,
+        "actualGrowthCycleJS": 91732706,
+        "plantTime": "2023-03-11T18:59:03.8116199Z",
+        "growthCycle": "1.00:00:00",
+        "actualGrowthCycle": "1.01:28:52.7062037",
+        "variant": [],
+        "requiredCondition": {
+          "Temperature": 20.0,
+          "Hudimity": 70.0,
+          "Illumination": 20000.0,
+          "CarbonDioxide": 350.0,
+          "PH": 6.5
+        }
+      }
+    },
+    {
+      "level": 0,
+      "isLocked": false,
+      "plantOn": {
+        "id": 9,
+        "name": "防风草",
+        "latin": "Pastinaca sativa",
+        "seedProductionRate": 26.0,
+        "plantTimeJS": 1678561173209,
+        "growthCycleJS": 86400000,
+        "actualGrowthCycleJS": 91732706,
+        "plantTime": "2023-03-11T18:59:33.2095807Z",
+        "growthCycle": "1.00:00:00",
+        "actualGrowthCycle": "1.01:28:52.7062037",
+        "variant": [],
+        "requiredCondition": {
+          "Temperature": 20.0,
+          "Hudimity": 70.0,
+          "Illumination": 20000.0,
+          "CarbonDioxide": 350.0,
+          "PH": 6.5
+        }
+      }
+    },
+    {
+      "level": 0,
+      "isLocked": false,
+      "plantOn": {
+        "id": 25,
+        "name": "防风草",
+        "latin": "Pastinaca sativa",
+        "seedProductionRate": 15.0,
+        "plantTimeJS": 1678563242776,
+        "growthCycleJS": 86400000,
+        "actualGrowthCycleJS": 93811372,
+        "plantTime": "2023-03-11T19:34:02.7761317Z",
+        "growthCycle": "1.00:00:00",
+        "actualGrowthCycle": "1.02:03:31.3726436",
+        "variant": [
+          7
+        ],
+        "requiredCondition": {
+          "Temperature": 20.0,
+          "Hudimity": 70.0,
+          "Illumination": 20000.0,
+          "CarbonDioxide": 310.0,
+          "PH": 6.5
+        }
+      }
     },
     {
       "level": 0,
@@ -28,40 +104,120 @@
     },
     {
       "level": 0,
-      "isLocked": true,
-      "plantOn": null
+      "isLocked": false,
+      "plantOn": {
+        "id": 24,
+        "name": "防风草",
+        "latin": "Pastinaca sativa",
+        "seedProductionRate": 29.0,
+        "plantTimeJS": 1678562607753,
+        "growthCycleJS": 86400000,
+        "actualGrowthCycleJS": 101976935,
+        "plantTime": "2023-03-11T19:23:27.753479Z",
+        "growthCycle": "1.00:00:00",
+        "actualGrowthCycle": "1.04:19:36.9355839",
+        "variant": [
+          2
+        ],
+        "requiredCondition": {
+          "Temperature": 20.0,
+          "Hudimity": 60.5,
+          "Illumination": 20000.0,
+          "CarbonDioxide": 350.0,
+          "PH": 6.995
+        }
+      }
     },
     {
       "level": 0,
-      "isLocked": true,
-      "plantOn": null
+      "isLocked": false,
+      "plantOn": {
+        "id": 22,
+        "name": "防风草",
+        "latin": "Pastinaca sativa",
+        "seedProductionRate": 39.0,
+        "plantTimeJS": 1678562346244,
+        "growthCycleJS": 86400000,
+        "actualGrowthCycleJS": 105805968,
+        "plantTime": "2023-03-11T19:19:06.2445575Z",
+        "growthCycle": "1.00:00:00",
+        "actualGrowthCycle": "1.05:23:25.9683406",
+        "variant": [
+          2,
+          6
+        ],
+        "requiredCondition": {
+          "Temperature": 20.0,
+          "Hudimity": 57.38,
+          "Illumination": 20000.0,
+          "CarbonDioxide": 323.25,
+          "PH": 6.775
+        }
+      }
     },
     {
       "level": 0,
-      "isLocked": true,
-      "plantOn": null
+      "isLocked": false,
+      "plantOn": {
+        "id": 21,
+        "name": "防风草",
+        "latin": "Pastinaca sativa",
+        "seedProductionRate": 23.0,
+        "plantTimeJS": 1678562341116,
+        "growthCycleJS": 86400000,
+        "actualGrowthCycleJS": 99982655,
+        "plantTime": "2023-03-11T19:19:01.1169229Z",
+        "growthCycle": "1.00:00:00",
+        "actualGrowthCycle": "1.03:46:22.6559250",
+        "variant": [
+          2
+        ],
+        "requiredCondition": {
+          "Temperature": 20.0,
+          "Hudimity": 62.0,
+          "Illumination": 20000.0,
+          "CarbonDioxide": 337.5,
+          "PH": 6.775
+        }
+      }
     },
     {
       "level": 0,
-      "isLocked": true,
-      "plantOn": null
-    },
-    {
-      "level": 0,
-      "isLocked": true,
-      "plantOn": null
-    },
-    {
-      "level": 0,
-      "isLocked": true,
-      "plantOn": null
+      "isLocked": false,
+      "plantOn": {
+        "id": 20,
+        "name": "防风草",
+        "latin": "Pastinaca sativa",
+        "seedProductionRate": 49.0,
+        "plantTimeJS": 1678562312136,
+        "growthCycleJS": 86400000,
+        "actualGrowthCycleJS": 93657538,
+        "plantTime": "2023-03-11T19:18:32.1361285Z",
+        "growthCycle": "1.00:00:00",
+        "actualGrowthCycle": "1.02:00:57.5383388",
+        "variant": [
+          7,
+          8
+        ],
+        "requiredCondition": {
+          "Temperature": 20.0,
+          "Hudimity": 70.0,
+          "Illumination": 20000.0,
+          "CarbonDioxide": 337.5,
+          "PH": 6.775
+        }
+      }
     }
   ],
   "modulesJS": [],
-  "unlockedModuleTypes": [],
+  "unlockedModuleTypes": [
+    0,
+    2,
+    4
+  ],
   "modules": {
     "Temperature": {
-      "value": 25.0,
+      "value": 29.45,
       "conditionType": 0
     },
     "Hudimity": {
@@ -69,15 +225,15 @@
       "conditionType": 1
     },
     "Illumination": {
-      "value": 15000.0,
+      "value": 20921.87,
       "conditionType": 2
     },
     "CarbonDioxide": {
-      "value": 15000.0,
+      "value": 350.0,
       "conditionType": 3
     },
     "PH": {
-      "value": 7.0,
+      "value": 6.3,
       "conditionType": 4
     }
   }

@@ -14,6 +14,7 @@ export var InformationType;
     InformationType[InformationType["ETCC_SeedStore"] = 3] = "ETCC_SeedStore";
     InformationType[InformationType["ETCC_Storage"] = 4] = "ETCC_Storage";
     InformationType[InformationType["ETCC_SeedMarket"] = 5] = "ETCC_SeedMarket";
+    InformationType[InformationType["Login_Announcement"] = 6] = "Login_Announcement";
 })(InformationType || (InformationType = {}));
 export var OperationType;
 (function (OperationType) {

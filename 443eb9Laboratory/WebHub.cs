@@ -10,11 +10,17 @@ namespace _443eb9Laboratory;
 public class WebHub : Hub
 {
     public Random random = new Random();
-    public static Dictionary<string, string> verifCodes = new Dictionary<string, string>();
+    public SmtpClient smtpClient = new SmtpClient("smtp.qq.com", 25)
+    {
+        Credentials = new NetworkCredential("3166943013@qq.com", "pyvuzkzphaabdgif"),
+        EnableSsl = true
+    };
+
+    public Dictionary<string, string> verifCodes = new Dictionary<string, string>();
 
     public override async Task OnConnectedAsync()
     {
-        Console.WriteLine($"[{DateTime.Now}] {Clients.Caller} Connected");
+        Console.WriteLine($"[{DateTime.Now}] Someone Connected");
         Thread.Sleep(1000);
         await ClientManager.SendMessage(Clients.Caller, "连接成功", "成功连接到服务端");
     }
@@ -72,6 +78,11 @@ public class WebHub : Hub
         await Clients.Client(connectionId).SendAsync("registerAnim");
     }
 
+    public async Task SendAnnouncementInfo(string connectionId)
+    {
+        await Clients.Client(connectionId).SendAsync("getAnnouncementInfo", File.ReadAllText("./Data/Announcement.json"));
+    }
+
     public async Task NewChamber(string chamberName, string chamberDescription, string connectionId, string ipAddress)
     {
         if (chamberDescription.Length > 22)
@@ -108,11 +119,6 @@ public class WebHub : Hub
             await ClientManager.SendErrorMessage(Clients.Client(connectionId), "无效参数", "邮箱格式错误");
             return;
         }
-        SmtpClient smtpClient = new SmtpClient("smtp.qq.com", 25)
-        {
-            Credentials = new NetworkCredential("3166943013@qq.com", "pyvuzkzphaabdgif"),
-            EnableSsl = true
-        };
         smtpClient.Send(verifCode);
     }
 

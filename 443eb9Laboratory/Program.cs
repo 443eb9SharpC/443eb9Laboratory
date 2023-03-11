@@ -1,29 +1,24 @@
-using _443eb9Laboratory;
+namespace _443eb9Laboratory;
 
-var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-builder.Services.AddControllersWithViews();
-builder.Services.AddSignalR();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+public class Program
 {
-    app.UseExceptionHandler("/Home/Error");
+    public static void Main(string[] args)
+    {
+        CreateHostBuilder(args).Build().Run();
+    }
+
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+        Host.CreateDefaultBuilder(args)
+            .ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.UseStartup<Startup>();
+                //webBuilder.UseKestrel(options =>
+                //{
+                //    // 配置Kestrel以接受SSL连接
+                //    options.ListenAnyIP(5001, listenOptions =>
+                //    {
+                //        listenOptions.UseHttps();
+                //    });
+                //});
+            });
 }
-app.UseStaticFiles();
-
-app.UseRouting();
-
-app.UseAuthorization();
-
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
-
-//Test.Tst();
-
-app.MapHub<WebHub>("/hub");
-app.Run();

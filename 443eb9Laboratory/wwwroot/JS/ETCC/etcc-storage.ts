@@ -31,6 +31,7 @@ function renderSeedInfo() {
     for (let i = 0; i < chamberStorage.seeds.length; i++) {
         let seedItem =
             `<li class="seed-product product clearfix">
+                <div class="seed-id">`+ i + `</div>
                 <i class="icon">`+ cropToIcon[chamberStorage.seeds[i].name] + `</i>
                 <div class="description">
                     <h4 class="latin">`+ chamberStorage.seeds[i].latin + `</h4>
@@ -58,7 +59,7 @@ function renderFruitInfo() {
     }
 }
 
-let seedNameToPlant: string
+let seedIdToPlant: string
 function openChunkPanel(event: MouseEvent) {
     chunkPanel.style.display = 'inline-block'
     chunkPanel.style.transform = `translate(${event.clientX}px, ${event.clientY}px)`
@@ -68,13 +69,13 @@ function openChunkPanel(event: MouseEvent) {
         target = target.parentElement
     }
 
-    let seedNameElement = target.querySelector('.name') as HTMLTitleElement
-    seedNameToPlant = seedNameElement.innerText
+    let seedElem = target.querySelector('.seed-id') as HTMLElement
+    seedIdToPlant = seedElem.innerText
 }
 
 export function plantSeed(chunkId: string) {
     chunkPanel.style.display = 'none'
-    connection.invoke('ETCC_ExecuteOperation', OperationType.ETCC_PlantSeed, connection.connectionId, ipAddress, [seedNameToPlant, chunkId])
+    connection.invoke('ETCC_ExecuteOperation', OperationType.ETCC_PlantSeed, connection.connectionId, ipAddress, [seedIdToPlant, chunkId])
 }
 
 enum Selection {

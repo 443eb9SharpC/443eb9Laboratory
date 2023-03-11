@@ -23,6 +23,7 @@ function renderSeedInfo() {
     seedContainer.innerHTML = '';
     for (let i = 0; i < chamberStorage.seeds.length; i++) {
         let seedItem = `<li class="seed-product product clearfix">
+                <div class="seed-id">` + i + `</div>
                 <i class="icon">` + cropToIcon[chamberStorage.seeds[i].name] + `</i>
                 <div class="description">
                     <h4 class="latin">` + chamberStorage.seeds[i].latin + `</h4>
@@ -47,7 +48,7 @@ function renderFruitInfo() {
         fruitContainer.insertAdjacentHTML('beforeend', fruitItem);
     }
 }
-let seedNameToPlant;
+let seedIdToPlant;
 function openChunkPanel(event) {
     chunkPanel.style.display = 'inline-block';
     chunkPanel.style.transform = `translate(${event.clientX}px, ${event.clientY}px)`;
@@ -55,12 +56,12 @@ function openChunkPanel(event) {
     while (!target.classList.contains('seed-product')) {
         target = target.parentElement;
     }
-    let seedNameElement = target.querySelector('.name');
-    seedNameToPlant = seedNameElement.innerText;
+    let seedElem = target.querySelector('.seed-id');
+    seedIdToPlant = seedElem.innerText;
 }
 export function plantSeed(chunkId) {
     chunkPanel.style.display = 'none';
-    connection.invoke('ETCC_ExecuteOperation', OperationType.ETCC_PlantSeed, connection.connectionId, ipAddress, [seedNameToPlant, chunkId]);
+    connection.invoke('ETCC_ExecuteOperation', OperationType.ETCC_PlantSeed, connection.connectionId, ipAddress, [seedIdToPlant, chunkId]);
 }
 var Selection;
 (function (Selection) {

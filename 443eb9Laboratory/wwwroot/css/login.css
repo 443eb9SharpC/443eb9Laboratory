@@ -182,16 +182,8 @@ body {
     padding: 80px;
 }
 
-.announcement {
-    position: relative;
-    overflow: auto;
-    width: 400px;
-    height: 100%;
-    background-color: #fff;
-}
-
-.announcement>.title {
-    position: fixed;
+.announcement-title {
+    display: inline-block;
     width: 400px;
     padding: 50px;
     background-color: #fff;
@@ -199,11 +191,15 @@ body {
     box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.1);
 }
 
-.announcement>.article-container {
-    margin-top: 170px;
+.article-container {
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 400px;
+    height: calc(100% - 160px);
+    background-color: #fff;
 }
 
-.announcement .ann-article {
+.article-container .ann-article {
     width: 350px;
     margin: 20px auto;
     padding: 15px;

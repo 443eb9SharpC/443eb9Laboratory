@@ -26,7 +26,7 @@ public class Chamber
     public void AddSeedToStorage(Seed seed)
     {
         int index = chamberStorage.seeds.FindIndex(seedInStorage => seedInStorage.name == seed.name);
-        if (index == -1)
+        if (index == -1 || seed.variant.Count != 0)
         {
             chamberStorage.seeds.Add(seed);
         }
@@ -37,9 +37,15 @@ public class Chamber
         SaveChamber();
     }
 
-    public void RemoveSeedFromStorage(string seedName)
+    public void RemoveSeedFromStorage(Seed seed)
     {
-        int index = chamberStorage.seeds.FindIndex(seedInStorage => seedInStorage.name == seedName);
+        if (seed.variant.Count != 0)
+        {
+            chamberStorage.seeds.Remove(seed);
+            return;
+        }
+
+        int index = chamberStorage.seeds.FindIndex(seedInStorage => seedInStorage.name == seed.name);
         if (chamberStorage.seeds[index].amount == 1)
         {
             chamberStorage.seeds.RemoveAt(index);
@@ -66,23 +72,9 @@ public class Chamber
         SaveChamber();
     }
 
-    public void RemoveFruitFromStorage(string fruitName)
+    public void RemoveFruitFromStorage(Fruit fruit)
     {
-        int index = chamberStorage.fruits.FindIndex(seedInStorage => seedInStorage.name == fruitName);
-        if (chamberStorage.fruits[index].amount == 1)
-        {
-            chamberStorage.fruits.RemoveAt(index);
-        }
-        else
-        {
-            chamberStorage.fruits[index].amount--;
-        }
-        SaveChamber();
-    }
-
-    public void RemoveFruitFromChamber(string fruitName)
-    {
-        int index = chamberStorage.fruits.FindIndex(seedInStorage => seedInStorage.name == fruitName);
+        int index = chamberStorage.fruits.FindIndex(seedInStorage => seedInStorage.name == fruit.name);
         if (chamberStorage.fruits[index].amount == 1)
         {
             chamberStorage.fruits.RemoveAt(index);
@@ -135,7 +127,7 @@ public class Chamber
         newChamber.modules[ConditionType.Temperature] = new Module() { conditionType = ConditionType.Temperature, value = 25 };
         newChamber.modules[ConditionType.Hudimity] = new Module { conditionType = ConditionType.Hudimity, value = 70 };
         newChamber.modules[ConditionType.Illumination] = new Module { conditionType = ConditionType.Illumination, value = 15000 };
-        newChamber.modules[ConditionType.CarbonDioxide] = new Module { conditionType = ConditionType.CarbonDioxide, value = 15000 }; ;
+        newChamber.modules[ConditionType.CarbonDioxide] = new Module { conditionType = ConditionType.CarbonDioxide, value = 350 }; ;
         newChamber.modules[ConditionType.PH] = new Module { conditionType = ConditionType.PH, value = 7 };
 
         IOOperator.ToJson($"./Data/UserData/{username}/Chamber.json", newChamber);

@@ -1,12 +1,29 @@
 import { connection, ipAddress } from "./signalr.js";
 connection.on("loginAnim", loginAnim);
 connection.on("registerAnim", registerAnim);
+connection.on("getAnnouncementInfo", getAnnouncementInfo);
 var page;
 (function (page) {
     page[page["login"] = 0] = "login";
     page[page["register"] = 1] = "register";
     page[page["retrieve"] = 2] = "retrieve";
 })(page || (page = {}));
+connection.invoke('SendAnnouncementInfo', connection.connectionId);
+let articleContainer = document.querySelector('.article-container ul');
+export function getAnnouncementInfo(json) {
+    let announcement = JSON.parse(json);
+    announcement.forEach(ann => {
+        articleContainer.insertAdjacentHTML('afterbegin', `<li>
+            <div class="ann-article">
+                <h2 class="title">` + ann.title + `</h2>
+                <p class="content">
+                    ` + ann.content + `
+                </p>
+            </div>
+        </li>
+        `);
+    });
+}
 let loginForm = document.querySelector('.login-form');
 let registerForm = document.querySelector('.register-form');
 let retrieveForm = document.querySelector('.retrieve-form');
