@@ -12,8 +12,7 @@ export enum InformationType {
     ETCC_Asset,
     ETCC_SeedStore,
     ETCC_Storage,
-    ETCC_SeedMarket,
-    Login_Announcement
+    ETCC_SeedMarket
 }
 
 export enum OperationType {

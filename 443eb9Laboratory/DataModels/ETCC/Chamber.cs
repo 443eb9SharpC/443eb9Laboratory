@@ -23,10 +23,27 @@ public class Chamber
         IOOperator.ToJson($"./Data/UserData/{owner}/Chamber.json", this);
     }
 
-    public void AddSeedToStorage(Seed seed)
+    public void AddSeedToStorage(Seed seed, bool isVariant)
     {
-        int index = chamberStorage.seeds.FindIndex(seedInStorage => seedInStorage.name == seed.name);
-        if (index == -1 || seed.variant.Count != 0)
+        int index;
+        if (isVariant)
+        {
+            index = chamberStorage.seeds.FindIndex(seedInStorage =>
+            {
+                int variantEquals = 0;
+                foreach (VariantType vt in seed.variant)
+                {
+                    if (seedInStorage.variant.Contains(vt)) variantEquals++;
+                }
+                return variantEquals == seed.variant.Count;
+            });
+        }
+        else
+        {
+            index = chamberStorage.seeds.FindIndex(seedInStorage => seedInStorage.name == seed.name && seedInStorage.variant.Count == 0);
+        }
+
+        if (index == -1)
         {
             chamberStorage.seeds.Add(seed);
         }

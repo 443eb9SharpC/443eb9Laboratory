@@ -8,17 +8,31 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\CSS\**" />
+    <Compile Remove="wwwroot\JS\**" />
+    <Compile Remove="wwwroot\lib\**" />
+    <Compile Remove="wwwroot\Pages\**" />
+    <Content Remove="wwwroot\CSS\**" />
+    <Content Remove="wwwroot\JS\**" />
+    <Content Remove="wwwroot\lib\**" />
+    <Content Remove="wwwroot\Pages\**" />
+    <EmbeddedResource Remove="wwwroot\CSS\**" />
+    <EmbeddedResource Remove="wwwroot\JS\**" />
+    <EmbeddedResource Remove="wwwroot\lib\**" />
+    <EmbeddedResource Remove="wwwroot\Pages\**" />
+    <None Remove="wwwroot\CSS\**" />
+    <None Remove="wwwroot\JS\**" />
+    <None Remove="wwwroot\lib\**" />
+    <None Remove="wwwroot\Pages\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Database\MarketDatabase.cs" />
     <Compile Remove="Database\StoreDatabase.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\js\common.ts" />
-    <Content Remove="wwwroot\js\login.ts" />
-    <Content Remove="wwwroot\js\package-lock.json" />
-    <Content Remove="wwwroot\js\package.json" />
-    <Content Remove="wwwroot\js\signalr.ts" />
-    <Content Remove="wwwroot\js\tsconfig.json" />
+    <Content Remove="wwwroot\favicon.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,6 +42,10 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.WebApi.Cors" Version="5.2.9" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
   </ItemGroup>
 
 </Project>
