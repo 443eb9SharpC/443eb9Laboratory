@@ -21,9 +21,8 @@ public class ETCC_OperExecuter
         }
         else
         {
-            seed.amount = 1;
             chamber.assets -= seed.buyPrice;
-            chamber.AddSeedToStorage(seed, false);
+            chamber.AddSeedToStorage(seed);
             chamber.SaveChamber();
             await ETCC_InfoSender.SendAssetInfo(username, client);
             await ETCC_InfoSender.SendStorageInfo(username, client);
@@ -92,12 +91,11 @@ public class ETCC_OperExecuter
         Plant targetPlant = chamber.chunks[chunkId].plantOn;
         if (DateTime.Now.ToUniversalTime().Subtract(targetPlant.plantTime).TotalMilliseconds < targetPlant.actualGrowthCycle.TotalMilliseconds) return;
 
-        if (random.Next(0, 100) < 100)
+        if (random.Next(0, 100) < 20)
         {
             Seed targetSeed = Crop.GetSeed(targetPlant.name);
-            targetSeed.amount = 1;
             targetSeed.variant = new List<VariantType>(targetPlant.variant);
-            chamber.AddSeedToStorage(targetSeed, true);
+            chamber.AddSeedToStorage(targetSeed);
             await ClientManager.SendMessage(client, "额外产物", "这株作物产出了一个单位的种子");
         }
 

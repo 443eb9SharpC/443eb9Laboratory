@@ -23,10 +23,10 @@ public class Chamber
         IOOperator.ToJson($"./Data/UserData/{owner}/Chamber.json", this);
     }
 
-    public void AddSeedToStorage(Seed seed, bool isVariant)
+    public void AddSeedToStorage(Seed seed)
     {
         int index;
-        if (isVariant)
+        if (seed.variant.Count != 0)
         {
             index = chamberStorage.seeds.FindIndex(seedInStorage =>
             {

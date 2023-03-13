@@ -8,18 +8,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\**" />
     <Compile Remove="wwwroot\CSS\**" />
     <Compile Remove="wwwroot\JS\**" />
     <Compile Remove="wwwroot\lib\**" />
     <Compile Remove="wwwroot\Pages\**" />
+    <Content Remove="Data\**" />
     <Content Remove="wwwroot\CSS\**" />
     <Content Remove="wwwroot\JS\**" />
     <Content Remove="wwwroot\lib\**" />
     <Content Remove="wwwroot\Pages\**" />
+    <EmbeddedResource Remove="Data\**" />
     <EmbeddedResource Remove="wwwroot\CSS\**" />
     <EmbeddedResource Remove="wwwroot\JS\**" />
     <EmbeddedResource Remove="wwwroot\lib\**" />
     <EmbeddedResource Remove="wwwroot\Pages\**" />
+    <None Remove="Data\**" />
     <None Remove="wwwroot\CSS\**" />
     <None Remove="wwwroot\JS\**" />
     <None Remove="wwwroot\lib\**" />

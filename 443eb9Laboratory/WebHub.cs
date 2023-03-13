@@ -16,7 +16,7 @@ public class WebHub : Hub
         EnableSsl = true
     };
 
-    public Dictionary<string, string> verifCodes = new Dictionary<string, string>();
+    public static Dictionary<string, string> verifCodes = new Dictionary<string, string>();
 
     public override async Task OnConnectedAsync()
     {
@@ -34,7 +34,7 @@ public class WebHub : Hub
     {
         if (!UserDatabase.HasUser(username))
         {
-            Console.WriteLine(username);
+            Console.WriteLine($"[{DateTime.Now}][{ipAddress}][{username}] Unknow user attempted to log in");
             await ClientManager.SendErrorMessage(Clients.Client(connectionId), "无效参数", "用户不存在");
             return;
         }

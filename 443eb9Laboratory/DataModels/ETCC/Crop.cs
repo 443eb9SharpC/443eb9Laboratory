@@ -29,7 +29,7 @@ public class Crop
         Crop crop = crops.Find(crop => crop.name == seedName);
         return new Seed()
         {
-            amount = crop.amount,
+            amount = 1,
             buyPrice = crop.buyPrice,
             name = crop.name,
             latin = crop.latin,
@@ -42,7 +42,7 @@ public class Crop
         Crop crop = crops.Find(crop => crop.name == fruitName);
         return new Fruit()
         {
-            amount = crop.amount,
+            amount = 1,
             sellPrice = crop.sellPrice,
             name = crop.name,
             latin = crop.latin

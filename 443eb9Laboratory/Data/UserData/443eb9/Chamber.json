@@ -1,169 +1,27 @@
 {
   "id": 1,
   "level": 0,
-  "assets": 3896250,
-  "cropsTotalPlanted": 40,
+  "assets": 1000,
+  "cropsTotalPlanted": 42,
   "owner": "443eb9",
   "name": "测试",
   "description": "测试",
   "chamberStorage": {
-    "seeds": [
+    "seeds": [],
+    "fruits": [
       {
-        "amount": 2,
-        "buyPrice": 100,
+        "amount": 3,
+        "sellPrice": 140,
         "name": "防风草",
-        "latin": "Pastinaca sativa",
-        "variant": []
-      },
-      {
-        "amount": 2,
-        "buyPrice": 150,
-        "name": "马铃薯",
-        "latin": "Solanum tuberosum",
-        "variant": []
-      },
-      {
-        "amount": 2,
-        "buyPrice": 250,
-        "name": "草莓",
-        "latin": "Fragaria × ananassa",
-        "variant": []
-      },
-      {
-        "amount": 2,
-        "buyPrice": 500,
-        "name": "西瓜",
-        "latin": "Citrullus lanatus",
-        "variant": []
+        "latin": "Pastinaca sativa"
       }
-    ],
-    "fruits": []
+    ]
   },
   "chunks": [
     {
       "level": 0,
       "isLocked": false,
-      "plantOn": {
-        "id": 39,
-        "name": "防风草",
-        "latin": "Pastinaca sativa",
-        "seedProductionRate": 2.0,
-        "plantTimeJS": 1678635108806,
-        "growthCycleJS": 86400000,
-        "actualGrowthCycleJS": 184610582,
-        "plantTime": "2023-03-12T15:31:48.8068158Z",
-        "growthCycle": "1.00:00:00",
-        "actualGrowthCycle": "2.03:16:50.5827508",
-        "variant": [],
-        "requiredCondition": {
-          "Temperature": 20.0,
-          "Hudimity": 57.845,
-          "Illumination": 20000.0,
-          "CarbonDioxide": 350.0,
-          "PH": 6.885
-        }
-      }
-    },
-    {
-      "level": 0,
-      "isLocked": false,
-      "plantOn": {
-        "id": 37,
-        "name": "防风草",
-        "latin": "Pastinaca sativa",
-        "seedProductionRate": 32.0,
-        "plantTimeJS": 1678635059733,
-        "growthCycleJS": 86400000,
-        "actualGrowthCycleJS": 216737843,
-        "plantTime": "2023-03-12T15:30:59.7330336Z",
-        "growthCycle": "1.00:00:00",
-        "actualGrowthCycle": "2.12:12:17.8433831",
-        "variant": [
-          9
-        ],
-        "requiredCondition": {
-          "Temperature": 20.0,
-          "Hudimity": 70.0,
-          "Illumination": 20000.0,
-          "CarbonDioxide": 350.0,
-          "PH": 6.885
-        }
-      }
-    },
-    {
-      "level": 0,
-      "isLocked": false,
-      "plantOn": {
-        "id": 38,
-        "name": "防风草",
-        "latin": "Pastinaca sativa",
-        "seedProductionRate": 19.0,
-        "plantTimeJS": 1678635068187,
-        "growthCycleJS": 86400000,
-        "actualGrowthCycleJS": 184610582,
-        "plantTime": "2023-03-12T15:31:08.1876833Z",
-        "growthCycle": "1.00:00:00",
-        "actualGrowthCycle": "2.03:16:50.5827508",
-        "variant": [
-          2,
-          3
-        ],
-        "requiredCondition": {
-          "Temperature": 20.0,
-          "Hudimity": 57.845,
-          "Illumination": 20000.0,
-          "CarbonDioxide": 350.0,
-          "PH": 6.885
-        }
-      }
-    },
-    {
-      "level": 0,
-      "isLocked": false,
-      "plantOn": {
-        "id": 31,
-        "name": "防风草",
-        "latin": "Pastinaca sativa",
-        "seedProductionRate": 26.0,
-        "plantTimeJS": 1678634148008,
-        "growthCycleJS": 86400000,
-        "actualGrowthCycleJS": 220263283,
-        "plantTime": "2023-03-12T15:15:48.0087647Z",
-        "growthCycle": "1.00:00:00",
-        "actualGrowthCycle": "2.13:11:03.2838007",
-        "variant": [],
-        "requiredCondition": {
-          "Temperature": 20.0,
-          "Hudimity": 70.0,
-          "Illumination": 20000.0,
-          "CarbonDioxide": 350.0,
-          "PH": 7.05
-        }
-      }
-    },
-    {
-      "level": 0,
-      "isLocked": false,
-      "plantOn": {
-        "id": 32,
-        "name": "防风草",
-        "latin": "Pastinaca sativa",
-        "seedProductionRate": 35.0,
-        "plantTimeJS": 1678634148855,
-        "growthCycleJS": 86400000,
-        "actualGrowthCycleJS": 220263283,
-        "plantTime": "2023-03-12T15:15:48.8558434Z",
-        "growthCycle": "1.00:00:00",
-        "actualGrowthCycle": "2.13:11:03.2838007",
-        "variant": [],
-        "requiredCondition": {
-          "Temperature": 20.0,
-          "Hudimity": 70.0,
-          "Illumination": 20000.0,
-          "CarbonDioxide": 350.0,
-          "PH": 7.05
-        }
-      }
+      "plantOn": null
     },
     {
       "level": 0,
@@ -173,78 +31,37 @@
     {
       "level": 0,
       "isLocked": false,
-      "plantOn": {
-        "id": 34,
-        "name": "马铃薯",
-        "latin": "Solanum tuberosum",
-        "seedProductionRate": 49.0,
-        "plantTimeJS": 1678634151140,
-        "growthCycleJS": 86400000,
-        "actualGrowthCycleJS": 215834509,
-        "plantTime": "2023-03-12T15:15:51.1403869Z",
-        "growthCycle": "1.00:00:00",
-        "actualGrowthCycle": "2.11:57:14.5098154",
-        "variant": [
-          7
-        ],
-        "requiredCondition": {
-          "Temperature": 19.0,
-          "Hudimity": 55.0,
-          "Illumination": 30000.0,
-          "CarbonDioxide": 358.0,
-          "PH": 5.7
-        }
-      }
+      "plantOn": null
     },
     {
       "level": 0,
       "isLocked": false,
-      "plantOn": {
-        "id": 35,
-        "name": "防风草",
-        "latin": "Pastinaca sativa",
-        "seedProductionRate": 26.0,
-        "plantTimeJS": 1678634156134,
-        "growthCycleJS": 86400000,
-        "actualGrowthCycleJS": 209724858,
-        "plantTime": "2023-03-12T15:15:56.1348466Z",
-        "growthCycle": "1.00:00:00",
-        "actualGrowthCycle": "2.10:15:24.8584109",
-        "variant": [
-          6
-        ],
-        "requiredCondition": {
-          "Temperature": 20.0,
-          "Hudimity": 70.0,
-          "Illumination": 20000.0,
-          "CarbonDioxide": 305.0,
-          "PH": 7.05
-        }
-      }
+      "plantOn": null
     },
     {
       "level": 0,
       "isLocked": false,
-      "plantOn": {
-        "id": 36,
-        "name": "防风草",
-        "latin": "Pastinaca sativa",
-        "seedProductionRate": 28.0,
-        "plantTimeJS": 1678634157086,
-        "growthCycleJS": 86400000,
-        "actualGrowthCycleJS": 209724858,
-        "plantTime": "2023-03-12T15:15:57.0862829Z",
-        "growthCycle": "1.00:00:00",
-        "actualGrowthCycle": "2.10:15:24.8584109",
-        "variant": [],
-        "requiredCondition": {
-          "Temperature": 20.0,
-          "Hudimity": 70.0,
-          "Illumination": 20000.0,
-          "CarbonDioxide": 305.0,
-          "PH": 7.05
-        }
-      }
+      "plantOn": null
+    },
+    {
+      "level": 0,
+      "isLocked": false,
+      "plantOn": null
+    },
+    {
+      "level": 0,
+      "isLocked": false,
+      "plantOn": null
+    },
+    {
+      "level": 0,
+      "isLocked": false,
+      "plantOn": null
+    },
+    {
+      "level": 0,
+      "isLocked": false,
+      "plantOn": null
     }
   ],
   "modulesJS": [],
@@ -257,23 +74,23 @@
   ],
   "modules": {
     "Temperature": {
-      "value": 27.9,
+      "value": 25.0,
       "conditionType": 0
     },
     "Hudimity": {
-      "value": 26.07,
+      "value": 70.0,
       "conditionType": 1
     },
     "Illumination": {
-      "value": 20921.87,
+      "value": 15000.0,
       "conditionType": 2
     },
     "CarbonDioxide": {
-      "value": -1.0,
+      "value": 350.0,
       "conditionType": 3
     },
     "PH": {
-      "value": 6.3,
+      "value": 7.0,
       "conditionType": 4
     }
   }
